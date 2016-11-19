@@ -1,10 +1,32 @@
+/*
+# 99B898 Light green
+# FECEA8 Tan
+# FF847C Pinkish
+# E84A5F Redish
+# 2A363B Dark Green
+*/
+
+
 .content{
-	width: 60%;
 	border: 1px solid black;
-	position: absolute;
-	left: 200px;
 }
 .searchDiv{
 	border: 1px solid black;
-	
+	background: #99B898;
+}
+#searchField{
+	height: 32px;
+	width: 400px;
+	font-size: 20px;
+	display: inline-block;
+	margin: 0;
+}
+#askQuestion{
+	display: inline-block;
+}
+#categorySelect{
+	width: 100px;
+	height: 32px;
+	font-size: 20px;
+	margin: 0;
 }
