@@ -1,5 +1,6 @@
 <html>
 <head>
+	<link rel="stylesheet" href="main.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -12,19 +13,24 @@
 	<nav></nav>
 	<div class="sideBar"></div>
 	<div class="content">
-		<div class="searchDiv">
-			<div id="categorySelect"></div>
-			<div id="searchField"></div>
-			<button id="askQuestion">Ask a Q -></button>
+		<div class="searchDiv"> <!-- This will be nice: http://www.w3schools.com/howto/howto_css_animated_search.asp -->
+			<select id="categorySelect">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+			</select>
+			<input type="text" name="search" placeholder="Search..." id="searchField">
+			<button class="btn btn-primary" id="askQuestion">Ask a Q -></button>
 		</div>
 		<div class="questions">
 			<div class="question">
 				<h3 class="questionTitle">Titles will go here?</h3>
 				<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.</p>
 				<div class="options">
-					<button class="upvote"></button>
-					<button class="downvote"></button>
-					<button class="comment"></button>
+					<button class="btn upvote"></button>
+					<button class="btn downvote"></button>
+					<button class="btn comment"></button>
 				</div>
 			</div>
 		</div>
