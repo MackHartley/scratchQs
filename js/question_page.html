@@ -1,0 +1,52 @@
+
+<!DOCTYPE>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<title>Questions</title>
+</head>
+<body>
+  Type in your question beleow! <br>
+  <input id="user_q" type="text" maxlength="100" >
+  <input type="submit" value="Submit" onclick="insert()" >
+  <br>
+  <br>
+
+
+
+</div>
+<div id="q_list"></div>
+</body>
+</html>
+
+<script>
+var questions = [];
+
+questions.push({question:"What's good in cafe mac today",answers:"Nothing."});
+questions.push({question:"Should I declare my comp sci major?",answers:"Yes"});
+for (var i=0; i < questions.length; i++) {
+            //TODO: move styles to question class in styles.css
+    $("#q_list").append($("<div class='question' style='border-style:solid; width: 500px; margin-bottom:6px'>")
+    .append($("<p>").append(questions[i].question))
+    .append($("<p>").append(questions[i].answers)));
+}
+
+var newQuestion = document.getElementById("user_q");
+function insert () {
+    display();
+    clear();
+}
+
+function display(){
+  questions.push({questions: newQuestion.value})
+  $("#q_list").append($("<div class='question' style='border-style:solid; width: 500px; margin-bottom:6px'>")
+  .append($("<p>").append(questions[questions.length-1].questions)));
+}
+
+function clear(){
+  newQuestion.value = "";
+
+}
+
+</script>
