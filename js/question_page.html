@@ -36,7 +36,8 @@ for (var i = 0; i < questions.length; i++) {
             //TODO: move styles to question class in styles.css
   $("#q_list").append($("<div class='question' style='border-style:solid; width: 500px; margin-bottom:6px'>")
   .append($("<p>").append(questions[i].question))
-  .append($("<p>").append(questions[i].answers)));
+  .append($("<p>").append(questions[i].answers))
+  .append($("<p>").append($("#user_rep").show())));
 }
 
 var newQuestion = document.getElementById("user_q");
@@ -49,7 +50,8 @@ function insert () {
 function display(){
   questions.push({questions: newQuestion.value})
   $("#q_list").append($("<div class='question' style='border-style:solid; width: 500px; margin-bottom:6px'>")
-  .append($("<p>").append(questions[questions.length-1].questions)));
+  .append($("<p>").append(questions[questions.length-1].questions))
+  .append($("<p>").append($("#user_rep").show())));
 }
 
 function clear(){
