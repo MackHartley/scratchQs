@@ -20,12 +20,16 @@
 }
 
 .content{
-	border: 1px solid black;
+
 }
+
 .searchDiv{
 	border: 1px solid black;
 	background: #99B898;
+	padding: 5px;
+	border-radius: 0 0 5px 5px;
 }
+
 #searchField{
 	height: 32px;
 	width: 400px;
@@ -33,9 +37,11 @@
 	display: inline-block;
 	margin: 0;
 }
+
 #askQuestion{
 	display: inline-block;
 }
+
 #categorySelect{
 	width: 100px;
 	height: 32px;
@@ -49,6 +55,7 @@
 	padding: 10px;
 	padding-right: 0;
 	background-color: #FECEA8;
+	border-radius: 5px 5px 0 0;
 }
 
 .question h3{
