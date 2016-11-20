@@ -29,7 +29,7 @@
   	<div class = "container">
 		<div class="sideBar col-sm-3">
 			<div class = "myGroups">
-	    		<h2 class = "sideBarTitle"> my Groups</h2>
+	    		<h2 class = "sideBarTitle"> My Groups</h2>
 				<ul class = "groupList">
 					<li>Mac Community</li>
 					<li>Shopping at Mac</li>
@@ -37,8 +37,16 @@
 				</ul>
 			</div>
 			<div class = "searchGroups">
-				<input type="text" name="search" placeholder="Search for new groups" id="searchGroupField">
-				<button class="glyphicon glyphicon-plus-sign" id="searchGroup"></button>
+				<div class="row">
+				  <div class="col-lg-12">
+				    <div class="input-group">
+				      <input type="text" class="form-control" placeholder="Search for new groups">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button">Go!</button>
+				      </span>
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-12 -->
+				</div><!-- /.row -->
 			</div>
 			<div class = "trendingGroups">
 				<h2 class = "sideBarTitle"> Trending Groups</h2>

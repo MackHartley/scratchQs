@@ -13,11 +13,17 @@
 
 .sideBarTitle{
 	background: #99B898;
+	margin: 0px;
 }
 
 .groupList{
 	background: #FECEA8;
 }
+
+.searchGroups{
+	margin-bottom: 10%;
+}
+
 
 .content{
 	border: 1px solid black;
