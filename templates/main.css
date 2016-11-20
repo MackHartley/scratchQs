@@ -6,6 +6,10 @@
 # 2A363B Dark Green
 */
 
+ul {
+  list-style-type: none;
+}
+
 .navbar-brand{
 	font-size: 48;
 	font-family: Georgia;
