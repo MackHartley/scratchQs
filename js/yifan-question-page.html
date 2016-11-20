@@ -1,0 +1,77 @@
+<!DOCTYPE>
+
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<title>question page</title>
+
+</head>
+<body>
+  Type in your question below! <br>
+  <input id="user_q" type="text" maxlength="100" >
+  <input type="submit" value="Submit" onclick="insertQ()" >
+  <p>
+
+
+
+</div>
+<div id="q_list"></div>
+
+</body>
+</html>
+
+<script>
+var questions = [];
+var answers = [];
+var questionId = 0;
+var answerId = 0;
+var newQuestion = document.getElementById("user_q");
+
+sampleQs();
+
+function sampleQs(){
+    questionId += 1;
+    questions.push({id: questionId, question:"What's good in cafe mac today",answers:"Nothing."});
+    questionId += 1;
+    questions.push({id: questionId,question:"Should I declare my comp sci major?",answers:"Yes"});
+    for (var i = 0; i < questions.length; i++) {
+      var div_name_Q='question'+questions[i].id;
+      console.log(div_name_Q);
+      $("#q_list").append($("<div class="+div_name_Q+" style='border-style:solid; width: 500px; margin-bottom:6px'>")
+      .append($("<p>").append(questions[i].question))
+      .append($("<p>").append(questions[i].answers)))
+      .append('<input id="user_answer" type="text" maxlength="100">')
+      .append('<input type="submit" value="Add a new answer" onclick="insertA('+div_name_Q+')"></div><p>'); 
+    }
+}
+
+
+function insertQ () {
+    displayQ();
+    clearQ();
+}
+
+function displayQ(){
+  questions.push({questions: newQuestion.value})
+  $("#q_list").append($("<div class='question' style='border-style:solid; width: 500px; margin-bottom:6px'>")
+  .append($("<p>").append(questions[questions.length-1].questions)))
+  .append('<input id="user_q" type="text" maxlength="100">')
+  .append('<input type="submit" value="Add a new answer"></div><p>'); 
+}
+
+function clearQ(){
+  newQuestion.value = "";
+}
+
+function insertA(selector_Q){
+  console.log(selector_Q);
+}
+
+
+
+
+
+
+
+</script>
