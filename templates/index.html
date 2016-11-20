@@ -13,7 +13,19 @@
 	<title>ScratchQs</title>
 </head>
 <body>
-	<nav></nav>
+	<nav class="navbar navbar-inverse header-nav">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Scratch Q's</a>
+      <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Log In</a></li>
+        <li><a href="#">Sign Up</a></li>
+       </ul>
+      </div>
+    </div>
+  	</nav>
+
+
 	<div class="sideBar col-sm-3">
 		<div class = "myGroups">
 			<h2> my Groups</h2>
@@ -23,7 +35,10 @@
 				<li>COMP 346</li>
 			</ul>
 		</div>
-		<div class = "searchGroups"></div>
+		<div class = "searchGroups">
+			<input type="text" name="search" placeholder="Search for new groups" id="searchGroupField">
+			<button class="glyphicon glyphicon-plus-sign" id="searchGroup"></button>
+		</div>
 		<div class = "trendingGroups">
 			<h2> Trending Groups</h2>
 			<ul class = "groupList">
