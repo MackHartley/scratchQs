@@ -26,12 +26,16 @@
 
 
 .content{
-	border: 1px solid black;
+
 }
+
 .searchDiv{
 	border: 1px solid black;
 	background: #99B898;
+	padding: 5px;
+	border-radius: 0 0 5px 5px;
 }
+
 #searchField{
 	height: 32px;
 	width: 400px;
@@ -39,9 +43,11 @@
 	display: inline-block;
 	margin: 0;
 }
+
 #askQuestion{
 	display: inline-block;
 }
+
 #categorySelect{
 	width: 100px;
 	height: 32px;
@@ -53,20 +59,39 @@
 	margin: 20px;
 	border: 1px solid black;
 	padding: 10px;
+	padding-right: 0;
+	background-color: #FECEA8;
+	border-radius: 5px 5px 0 0;
 }
 
 .question h3{
-	margin-top: 5px
+	margin-top: 0px;
+	background-color: #99B898;
+	padding: 5px;
+	padding-bottom: 0px;
+	border-radius: 4px;
 }
 
 .questionContent{
+	display: block;
+	margin-bottom: 0px;
+}
+
+.questionInfo{
+	width: 83%;
+	margin: 0;
 	display: inline-block;
 }
 
 .options{
 	display: inline-block;
+	position: relative;
+	vertical-align: top;
 }
 
 .options > *{
 	display: block;
+	margin-left: 10px;
+	width: 90px;
+	margin-top: 5px;
 }
