@@ -11,6 +11,14 @@
 	font-family: Georgia;
 }
 
+.sideBarTitle{
+	background: #99B898;
+}
+
+.groupList{
+	background: #FECEA8;
+}
+
 .content{
 	border: 1px solid black;
 }
