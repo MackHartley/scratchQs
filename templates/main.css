@@ -28,12 +28,13 @@ ul {
 }
 
 .searchGroups{
-	margin-bottom: 10%;
+
 }
 
 .myGroups{
 	border-radius: 0 0 5px 5px;
 	border: 1px solid black;
+	margin-bottom: 10px;
 }
 
 .trendingGroups{
