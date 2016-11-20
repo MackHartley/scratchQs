@@ -1,5 +1,5 @@
-
 <!DOCTYPE>
+
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -29,7 +29,6 @@
 <script>
 var questions = [];
 var answers = [];
-
 questions.push({question:"What's good in cafe mac today",answers:"Nothing."});
 questions.push({question:"Should I declare my comp sci major?",answers:"Yes"});
 for (var i = 0; i < questions.length; i++) {
@@ -39,24 +38,20 @@ for (var i = 0; i < questions.length; i++) {
   .append($("<p>").append(questions[i].answers))
   .append($("<p>").append($("#user_rep").show())));
 }
-
 var newQuestion = document.getElementById("user_q");
 function insert () {
     display();
     $("#q_list").append($("#user_rep").show());
     clear();
 }
-
 function display(){
   questions.push({questions: newQuestion.value})
   $("#q_list").append($("<div class='question' style='border-style:solid; width: 500px; margin-bottom:6px'>")
   .append($("<p>").append(questions[questions.length-1].questions))
   .append($("<p>").append($("#user_rep").show())));
 }
-
 function clear(){
   newQuestion.value = "";
-
 }
 var newAnswer = document.getElementById("user_rep");
 function insertAns(ele) {
@@ -65,15 +60,12 @@ function insertAns(ele) {
     clearAns();
   }
 }
-
 function displayAns(){
   answers.push({answers: newAnswer.value})
   $("#r_list").append($("<div class='answer'; width: 500px; margin-bottom:6px'>")
   .append($("<p>").append(answers[answers.length-1].answers)));
 }
-
 function clearAns() {
   newAnswer.value = "";
 }
-
 </script>
