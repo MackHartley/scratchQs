@@ -55,6 +55,10 @@ ul {
 }
 
 #searchField{
+
+}
+
+.searchField{
 	height: 32px;
 	width: 400px;
 	font-size: 20px;
@@ -112,4 +116,8 @@ ul {
 	margin-left: 10px;
 	width: 90px;
 	margin-top: 5px;
+}
+
+.questionForm{
+	border: 1px solid black;
 }
