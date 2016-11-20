@@ -14,16 +14,29 @@
 .sideBarTitle{
 	background: #99B898;
 	margin: 0px;
+	padding: 5px;
 }
 
 .groupList{
 	background: #FECEA8;
+	margin-bottom: 0px;
+	border-radius: 0 0 5px 5px;
 }
 
 .searchGroups{
 	margin-bottom: 10%;
 }
 
+.myGroups{
+	border-radius: 0 0 5px 5px;
+	border: 1px solid black;
+}
+
+.trendingGroups{
+	border-radius: 0 0 5px 5px;
+	border: 1px solid black;
+	margin-bottom: 10px
+}
 
 .content{
 
@@ -61,7 +74,7 @@
 	padding: 10px;
 	padding-right: 0;
 	background-color: #FECEA8;
-	border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 5px 5px;
 }
 
 .question h3{
