@@ -47,20 +47,38 @@
 	margin: 20px;
 	border: 1px solid black;
 	padding: 10px;
+	padding-right: 0;
+	background-color: #FECEA8;
 }
 
 .question h3{
-	margin-top: 5px
+	margin-top: 0px;
+	background-color: #99B898;
+	padding: 5px;
+	padding-bottom: 0px;
+	border-radius: 4px;
 }
 
 .questionContent{
+	display: block;
+	margin-bottom: 0px;
+}
+
+.questionInfo{
+	width: 83%;
+	margin: 0;
 	display: inline-block;
 }
 
 .options{
 	display: inline-block;
+	position: relative;
+	vertical-align: top;
 }
 
 .options > *{
 	display: block;
+	margin-left: 10px;
+	width: 90px;
+	margin-top: 5px;
 }
