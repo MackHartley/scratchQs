@@ -65,30 +65,26 @@
 
 		<div class="content col-sm-offset-3">
 			<div class="searchDiv"> <!-- This will be nice: http://www.w3schools.com/howto/howto_css_animated_search.asp -->
-<!-- 				<div class = "row">
-					<div class="col-lg-12"> -->
-				    	<div class="input-group">
-					      	<input type="text" class="form-control" placeholder="Search for new topics...">
-					      	<span class="input-group-btn">
-				        		<button class="btn btn-default" type="button">Search</button>
-				      		</span>
-				    	</div><!-- /input-group -->
-						<div class="btn-group" role="group">
-							<div class="btn-group" role="group">
-							    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    Categories
-							    <span class="caret"></span>
-							  	</button>
-							  	<ul class="dropdown-menu">
-							    	<li><a href="#">Cat 1</a></li>
-							    	<li><a href="#">Cat 2</a></li>
-							  	</ul>
-							</div>
-						</div>
-						<a href="#">Hot categories 1</a>
-						<a href="#">Hot categories 2</a>
-<!-- 					</div>
-				</div> -->
+		    	<div class="input-group">
+			      	<input type="text" class="form-control" placeholder="Search for new topics...">
+			      	<span class="input-group-btn">
+		        		<button class="btn btn-default" type="button">Search</button>
+		      		</span>
+		    	</div><!-- /input-group -->
+				<div class="btn-group" role="group">
+					<div class="btn-group" role="group">
+					    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Categories
+					    <span class="caret"></span>
+					  	</button>
+					  	<ul class="dropdown-menu">
+					    	<li><a href="#">Cat 1</a></li>
+					    	<li><a href="#">Cat 2</a></li>
+					  	</ul>
+					</div>
+				</div>
+				<a href="#">Hot categories 1</a>
+				<a href="#">Hot categories 2</a>
 				<!-- <select id="categorySelect">
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -106,8 +102,19 @@
 	
 
 				<div class="questionForm question">
-					<input class="searchField" type="text" name="answer" placeholder="Ask a question" id="newQuestionInput">
-					<button class="btn btn-primary">Ask</button>
+					<h4>Ask a new question here</h4>
+					<div class="col-lg-8">
+				    	<div class="input-group">
+					      	<input type="text" class="form-control" placeholder="Title">
+					      	<input type="text" class="form-control" placeholder="Description" id = "questionDescription">
+					      	<span>
+					      	<p></p>
+				        	<button class="btn btn-default" type="button">Ask the question!</button>
+				        	</span>
+						</div>
+					</div>
+<!-- 					<input class="searchField" type="text" name="answer" placeholder="Ask a question" id="newQuestionInput">
+					<button class="btn btn-primary">Ask</button> -->
 				</div>
 
 				<div class="question shadowedBox">
@@ -121,7 +128,7 @@
 						</button>
 						<button type="button" class="btn btn-default btn-lg">
 	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
-						</button> -->
+						</button>
 						<button class="btn btn-primary upvote">^</button>
 						<button class="btn btn-primary downvote">V</button>
 						<button class="btn btn-primary comment">Comment</button>
