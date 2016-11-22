@@ -30,7 +30,7 @@ ul {
 .groupList{
 	background: #FFF6E3;
 	margin-bottom: 0px;
-	/*border-radius: 0 0 5px 5px;*/
+	border-radius: 0 0 5px 5px;
 }
 
 .displayGroups{
@@ -40,6 +40,7 @@ ul {
 
 .searchGroups{
 	border: 1px solid black;
+	border-top: none;
 	border-radius: 0 0 5px 5px;*/
 }
 
