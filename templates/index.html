@@ -20,12 +20,31 @@
 	      	<a class="navbar-brand" href="index.html">Scratch Q's</a>
 	      	<div class="collapse navbar-collapse" id="navbar">
 		      	<ul class="nav navbar-nav navbar-right">
-		        	<li><a href="#">Log In</a></li>
+		        	<li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
 		        	<li><a href="#">Sign Up</a></li>
 		      	</ul>
 	      	</div>
 	    </div>
   	</nav>
+
+	<div class = "login">
+		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		    <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+					<form>
+					<input type="text" name="user" placeholder="Username">
+					<input type="password" name="pass" placeholder="Password">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+					</form>
+							
+					<div class="login-help">
+					    <a href="#">Register a new account</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
   	<div class = "container">
@@ -109,7 +128,9 @@
 					      	<input type="text" class="form-control" placeholder="Description" id = "questionDescription">
 					      	<span>
 					      	<p></p>
-				        	<button class="btn btn-default" type="button" onclick="insertQ()">Ask the question!</button>
+
+				        	<button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Ask the question!</button>
+
 				        	</span>
 						</div>
 					</div>
