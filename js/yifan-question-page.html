@@ -27,6 +27,8 @@ var answers = [];
 var questionId = 0;
 var answerId = 0;
 var newQuestion = document.getElementById("user_q");
+div_name_Q=""
+
 
 sampleQs();
 
@@ -36,9 +38,9 @@ function sampleQs(){
     questionId += 1;
     questions.push({id: questionId,question:"Should I declare my comp sci major?",answers:"Yes"});
     for (var i = 0; i < questions.length; i++) {
-      var div_name_Q='question'+questions[i].id;
+      div_name_Q="question"+questions[i].id;
       console.log(div_name_Q);
-      $("#q_list").append($("<div class="+div_name_Q+" style='border-style:solid; width: 500px; margin-bottom:6px'>")
+      $("#q_list").append($('<div class='+div_name_Q+'style="border-style:solid; width: 500px; margin-bottom:6px">')
       .append($("<p>").append(questions[i].question))
       .append($("<p>").append(questions[i].answers)))
       .append('<input id="user_answer" type="text" maxlength="100">')
@@ -64,9 +66,11 @@ function clearQ(){
   newQuestion.value = "";
 }
 
-function insertA(selector_Q){
-  console.log(selector_Q);
+
+function insertA(selectorQ){
+  console.log("test");
 }
+
 
 
 
