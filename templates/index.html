@@ -124,11 +124,13 @@
 					<h4>Ask a new question here</h4>
 					<div class="col-lg-8">
 				    	<div class="input-group">
-					      	<input type="text" class="form-control" placeholder="Title">
+					      	<input type="text" class="form-control" placeholder="Title" id = "questionTitle">
 					      	<input type="text" class="form-control" placeholder="Description" id = "questionDescription">
 					      	<span>
 					      	<p></p>
-				        	<button class="btn btn-default" type="button" id = "askButton">Ask the question!</button>
+
+				        	<button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Ask the question!</button>
+
 				        	</span>
 						</div>
 					</div>
@@ -138,8 +140,8 @@
 
 				<div class="question shadowedBox">
 					<div class="questionInfo">
-						<h3 class="questionTitle">Titles will go here?</h3>
-						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+						<h3 class="questionTitle">Sample Question No. 1</h3>
+						<p class="questionContent">Sample Question Description.  Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
 					</div>
 					<div class="options">
 <!-- 						<button type="button" class="btn btn-default btn-lg">
@@ -160,12 +162,30 @@
 						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
 					</div>
 					<div class="options">
-<!-- 						<button type="button" class="btn btn-default btn-lg">
+ 						<button type="button" class="btn btn-default btn-lg">
 	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
 						</button>
 						<button type="button" class="btn btn-default btn-lg">
 	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
 						</button> -->
+						<button class="btn btn-primary upvote">^</button>
+						<button class="btn btn-primary downvote">V</button>
+						<button class="btn btn-primary comment">Comment</button>
+					</div>
+				</div>
+<!--
+				<div class="question shadowedBox">
+					<div class="questionInfo">
+						<h3 class="questionTitle">Titles will go here?</h3>
+						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+					</div>
+					<div class="options">
+ 						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
+						</button> 
 						<button class="btn btn-primary upvote">^</button>
 						<button class="btn btn-primary downvote">V</button>
 						<button class="btn btn-primary comment">Comment</button>
@@ -178,35 +198,20 @@
 						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
 					</div>
 					<div class="options">
-<!-- 						<button type="button" class="btn btn-default btn-lg">
+ 						<button type="button" class="btn btn-default btn-lg">
 	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
 						</button>
 						<button type="button" class="btn btn-default btn-lg">
 	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
-						</button> -->
+						</button> 
 						<button class="btn btn-primary upvote">^</button>
 						<button class="btn btn-primary downvote">V</button>
 						<button class="btn btn-primary comment">Comment</button>
 					</div>
-				</div>
+				</div> -->
 
-				<div class="question shadowedBox">
-					<div class="questionInfo">
-						<h3 class="questionTitle">Titles will go here?</h3>
-						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
-					</div>
-					<div class="options">
-<!-- 						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
-						</button> -->
-						<button class="btn btn-primary upvote">^</button>
-						<button class="btn btn-primary downvote">V</button>
-						<button class="btn btn-primary comment">Comment</button>
-					</div>
-				</div>
+
+
 
 			</div>
 
@@ -219,3 +224,47 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>
+
+
+<script>
+var questionsList = [];
+var questionId = 0;
+var newQuestionTitle = document.getElementById("questionTitle");
+var newQuestionDescription = document.getElementById("questionDescription");
+
+
+function insertQ () {
+	//console.log(newQuestionTitle.value)
+	//console.log(newQuestionDescription.value)
+    displayQ();
+    clearQ();
+}
+
+function displayQ(){
+	questionId += 1;
+	console.log(questionId)
+  	questionsList.push({id: questionId, title: newQuestionTitle.value, des:newQuestionDescription.value })
+  	$(".questions").append($('<div class="question shadowedBox">')
+  	.append($('<div class="questionInfo">')
+  		.append($('<h3 class="questionTitle">')
+  		.append($("<p>").append(newQuestionTitle.value)))
+  		.append($('<p class="questionContent">').append($("<p>").append(newQuestionDescription.value))))
+  		.append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
+
+  		)); 
+  	console.log(questionsList)
+}
+
+
+function clearQ(){
+  	newQuestionTitle.value = "";
+  	newQuestionDescription.value = "";
+}
+
+</script>
+
+
+
+
+
+
