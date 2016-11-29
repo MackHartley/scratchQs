@@ -10,27 +10,21 @@ ul {
   list-style-type: none;
 }
 
-.shadowedBox{
-    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-   	-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-
 .navbar-brand{
-	font-size: 48;
+	font-size: 48px;
 	font-family: Georgia;
 }
 
 .sideBarTitle{
-	background: #73EEFF;
+	background: #99B898;
 	margin: 0px;
 	padding: 5px;
 }
 
 .groupList{
-	background: #FFF6E3;
+	background: #FECEA8;
 	margin-bottom: 0px;
-	border-radius: 0 0 3px 3px;
+	/*border-radius: 0 0 5px 5px;*/
 }
 
 .displayGroups{
@@ -40,20 +34,19 @@ ul {
 
 .searchGroups{
 	border: 1px solid black;
-	border-top: none;
-	border-radius: 0 0 3px 3px;*/
+	border-radius: 0 0 5px 5px;
 }
 
 .myGroups{
-	border-radius: 0 0 3px 3px;
+	border-radius: 0 0 5px 5px;
 	/*border: 1px solid black;*/
 	margin-bottom: 10px;
 }
 
 .trendingGroups{
-	border-radius: 0 0 3px 3px;
+	border-radius: 0 0 5px 5px;
 	border: 1px solid black;
-	margin-bottom: 10px*/
+	margin-bottom: 10px
 }
 
 .content{
@@ -62,21 +55,12 @@ ul {
 
 .searchDiv{
 	border: 1px solid black;
-	background: #73EEFF;
+	background: #99B898;
 	padding: 5px;
-	border-radius: 0 0 3px 3px;
+	border-radius: 0 0 5px 5px;
 }
 
-
-
-.questionForm{
-	border: 1px solid black;
-	display: inline-block;
-	margin-bottom: 0;
-	padding-right: 10px;
-}
-
-.searchField{
+#searchField{
 	height: 32px;
 	width: 400px;
 	font-size: 20px;
@@ -95,31 +79,21 @@ ul {
 	margin: 0;
 }
 
-#questionDescription{
-	width: 500px;
-	height: 100px;
-	margin-top: 5%;
-}
-
-#askButton {
-	margin-top: 5px;
-}
-
 .question{
 	margin: 20px;
 	border: 1px solid black;
 	padding: 10px;
 	padding-right: 0;
-	background-color: #FFF6E3;
-	border-radius: 3px 3px 3px 3px;
+	background-color: #FECEA8;
+	border-radius: 5px 5px 5px 5px;
 }
 
 .question h3{
 	margin-top: 0px;
-	background-color: #73EEFF;
+	background-color: #99B898;
 	padding: 5px;
 	padding-bottom: 0px;
-	border-radius: 3px;
+	border-radius: 4px;
 }
 
 .questionContent{
@@ -146,93 +120,9 @@ ul {
 	margin-top: 5px;
 }
 
-.navbar-default {
-    background-color: red;
-    border-color: #E7E7E7;
-}
-
-
-/****** LOGIN MODAL ******/
-.loginmodal-container {
-  padding: 30px;
-  max-width: 350px;
-  width: 100% !important;
-  background-color: #F7F7F7;
-  margin: 0 auto;
-  border-radius: 2px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  font-family: roboto;
-}
-
-.loginmodal-container h1 {
-  text-align: center;
-  font-size: 1.8em;
-  font-family: roboto;
-}
-
-.loginmodal-container input[type=submit] {
-  width: 100%;
-  display: block;
-  margin-bottom: 10px;
-  position: relative;
-}
-
-.loginmodal-container input[type=text], input[type=password] {
-  height: 44px;
-  font-size: 16px;
-  width: 100%;
-  margin-bottom: 10px;
-  border: 1px solid #d9d9d9;
-  border-top: 1px solid #c0c0c0;
-  padding: 0 8px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-.loginmodal-container input[type=text]:hover, input[type=password]:hover {
-  border: 1px solid #b9b9b9;
-  border-top: 1px solid #a0a0a0;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.loginmodal {
-  text-align: center;
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
-  font-weight: 700;
-  height: 36px;
-  padding: 0 8px;
-}
-
-.loginmodal-submit {
-  /* border: 1px solid #3079ed; */
-  border: 0px;
-  color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1); 
-  background-color: #4d90fe;
-  padding: 17px 0px;
-  font-family: roboto;
-  font-size: 14px;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
-}
-
-.loginmodal-submit:hover {
-  /* border: 1px solid #2f5bb7; */
-  border: 0px;
-  text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #357ae8;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
-}
-
-.loginmodal-container a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 400;
-  text-align: center;
-  display: inline-block;
-  opacity: 0.6;
-  transition: opacity ease 0.5s;
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
