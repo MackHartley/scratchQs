@@ -11,12 +11,13 @@
   Type in your question below! <br>
   <input id="user_q" type="text" maxlength="100" >
   <input type="submit" value="Submit" onclick="insertQ()" >
+
   <p>
 
-
+<div id="q_list"></div>
 
 </div>
-<div id="q_list"></div>
+
 
 </body>
 </html>
@@ -27,7 +28,6 @@ var answers = [];
 var questionId = 0;
 var answerId = 0;
 var newQuestion = document.getElementById("user_q");
-div_name_Q=""
 
 
 sampleQs();
@@ -38,13 +38,13 @@ function sampleQs(){
     questionId += 1;
     questions.push({id: questionId,question:"Should I declare my comp sci major?",answers:"Yes"});
     for (var i = 0; i < questions.length; i++) {
-      div_name_Q="question"+questions[i].id;
+      var div_name_Q="question"+questions[i].id;
       console.log(div_name_Q);
-      $("#q_list").append($('<div class='+div_name_Q+'style="border-style:solid; width: 500px; margin-bottom:6px">')
+      $("#q_list").append($('<div id='+div_name_Q+' style="border-style:solid; width: 500px; margin-bottom:6px">')
       .append($("<p>").append(questions[i].question))
       .append($("<p>").append(questions[i].answers)))
       .append('<input id="user_answer" type="text" maxlength="100">')
-      .append('<input type="submit" value="Add a new answer" onclick="insertA('+div_name_Q+')"></div><p>'); 
+      .append('<input type="submit" value="Add a new answer" onclick="insertA(\''+div_name_Q+'\')"></div><p>');
     }
 }
 
@@ -55,11 +55,11 @@ function insertQ () {
 }
 
 function displayQ(){
-  questions.push({questions: newQuestion.value})
-  $("#q_list").append($("<div class='question' style='border-style:solid; width: 500px; margin-bottom:6px'>")
+  questions.push({questions: newQuestion.value});
+  $("#q_list").append($('<div id="NewQuestion" style="border-style:solid; width: 500px; margin-bottom:6px">')
   .append($("<p>").append(questions[questions.length-1].questions)))
   .append('<input id="user_q" type="text" maxlength="100">')
-  .append('<input type="submit" value="Add a new answer"></div><p>'); 
+  .append('<input type="submit" value="Add a new answer" onclick="insertA()"></div><p>');
 }
 
 function clearQ(){
@@ -67,15 +67,10 @@ function clearQ(){
 }
 
 
-function insertA(selectorQ){
-  console.log("test");
+function insertA(div_id){
+  var selector = "#"+div_id;
+  $(selector).append($('<div id=answer1; style="width: 500px; margin-bottom:6px">')
+          .append($("<p>").append("test")));
 }
-
-
-
-
-
-
-
 
 </script>
