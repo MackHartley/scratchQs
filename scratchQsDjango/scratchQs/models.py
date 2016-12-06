@@ -18,3 +18,7 @@ class Answer(models.Model):
 	votes = models.IntegerField(default=0)
 	def __str__(self):
 		return 'Question: %s (Content: %s)' % (self.question, self.content)
+
+
+# filter by answer, question=question.object
+# "use artist.objects.get(id=1)" to get the object

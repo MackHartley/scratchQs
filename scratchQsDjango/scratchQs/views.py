@@ -23,13 +23,13 @@ def questions(request):
 	questionList = []
 	questions = Question.objects.all()
 	for question in questions:
-		question_context = {"title":question.title, "content": question.content, "votes":question.votes,
-			"category": question.category, "id" : question.pk}
+		question_context = {"title": question.title, "content": question.content, "votes": question.votes,
+			"category": question.category, "id": question.pk}
 		questionList.append(question_context)
 	context = {"questions" : questionList}
 	return render(request, "index.html", context)
 
-def answer(request,question_id):
+def answers(request,question_id):
 	question = Question.objects.get(pk=question_id)
 	answers = Answer.objects.filter(question_id=question_id)
 	context = {"title" : question.question_title, "answers" : answers}
