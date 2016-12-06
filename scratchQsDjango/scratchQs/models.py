@@ -6,12 +6,16 @@ from django.db import models
 
 class Question(models.Model):
 	title = models.CharField(max_length=200, unique=True)
-	content = models.TextField()
+	question_content = models.TextField()
 	category = models.charField(max_length=100)
 	votes = models.IntegerField(default=0)
 	def __str__(self):
 		return 'question: %s' % (self.title)
 
 class Answer(models.Model):
-	content = models.TextField()
+	question = models.ForeignKey(Question, on_delete=models.CASCADE)
+	answer_content = models.TextField()
 	votes = models.IntegerField(default=0)
+
+	def __str__(self):
+        return 'answer: %s %s' % (self.answer_content, self.question)
