@@ -2,9 +2,7 @@ from django.contrib import admin
 
 from .models import Question, Answer
 
-admin.site.register(Question)
-admin.site.register(Answer)
-# Register your models here.
+# Registering models here
 
-admin.site.register(Question) 
+admin.site.register(Question)
 admin.site.register(Answer)
