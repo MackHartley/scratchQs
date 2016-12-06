@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from scratchQs import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls)
-    #url(r'^index', views.questions, name="questions"),
+    url(r'^admin/', admin.site.urls),
+    url(r'^questions/', views.questions, name="questions")
     #url(r'^answer_page/(?P<question_id>[0-9]+)', views.answer, name="answer")
 ]
