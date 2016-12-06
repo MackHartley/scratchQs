@@ -7,7 +7,7 @@ from django.db import models
 class Question(models.Model):
 	title = models.CharField(max_length=200, unique=True)
 	question_content = models.TextField()
-	category = models.charField(max_length=100)
+	category = models.CharField(max_length=100)
 	votes = models.IntegerField(default=0)
 	def __str__(self):
 		return 'question: %s' % (self.title)
@@ -18,4 +18,4 @@ class Answer(models.Model):
 	votes = models.IntegerField(default=0)
 
 	def __str__(self):
-        return 'answer: %s %s' % (self.answer_content, self.question)
+		return 'answer: %s %s' % (self.answer_content, self.question.title)
