@@ -1,2 +1,4 @@
 *.sqlite3
 *.pyc
+scratchQs/admin.pyc
+scratchQs/urls.pyc
