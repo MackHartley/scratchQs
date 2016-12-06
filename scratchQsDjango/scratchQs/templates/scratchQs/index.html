@@ -1,0 +1,247 @@
+<html>
+<head>
+	<link rel="stylesheet" href="main.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+	<link href="main.css" rel="stylesheet">
+
+	<meta charset="UTF-8">
+	<title>ScratchQs</title>
+</head>
+<body>
+	<nav class="navbar navbar-default header-nav">
+	    <div class="container">
+	      	<a class="navbar-brand" href="index.html">Scratch Q's</a>
+	      	<div class="collapse navbar-collapse" id="navbar">
+		      	<ul class="nav navbar-nav navbar-right">
+		        	<li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
+		        	<li><a href="signup.html">Sign Up</a></li>
+		      	</ul>
+	      	</div>
+	    </div>
+  	</nav>
+
+	<div class = "login">
+		<div name = "login" class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		    <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+					<form>
+					<input type="text" name="user" placeholder="Username">
+					<input type="password" name="pass" placeholder="Password">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+					</form>
+
+					<div class="login-help">
+					    <a href="signup.html">Register a new account</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+  	<div class = "container">
+		<div class="sideBar col-sm-3">
+			<div class = "myGroups shadowedBox">
+				<div class = "displayGroups">
+		    		<h2 class = "sideBarTitle"> My Groups</h2>
+					<ul class = "groupList">
+						<li>Mac Community</li>
+						<li>Shopping at Mac</li>
+						<li>COMP 346</li>
+					</ul>
+				</div>
+				<div class = "searchGroups">
+					<div class="row">
+					  	<div class="col-lg-12">
+					    	<div class="input-group">
+						      	<input type="text" class="form-control" placeholder="Search for new groups">
+						      	<span class="input-group-btn">
+					        		<button class="btn btn-default" type="button">Go!</button>
+					      		</span>
+					    	</div><!-- /input-group -->
+					  	</div><!-- /.col-lg-12 -->
+					</div><!-- /.row -->
+				</div>
+			</div>
+
+			<div class = "trendingGroups shadowedBox">
+				<h2 class = "sideBarTitle"> Trending Groups</h2>
+				<ul class = "groupList">
+					<li>Dupre Hall</li>
+					<li>Mac Hack</li>
+					<li>Students for Justice</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="content col-sm-offset-3">
+			<div class="searchDiv"> <!-- This will be nice: http://www.w3schools.com/howto/howto_css_animated_search.asp -->
+		    	<div class="input-group">
+			      	<input type="text" class="form-control" placeholder="Search for new topics...">
+			      	<span class="input-group-btn">
+		        		<button class="btn btn-default" type="button">Search</button>
+		      		</span>
+		    	</div><!-- /input-group -->
+				<div class="btn-group" role="group">
+					<div class="btn-group" role="group">
+					    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Categories
+					    <span class="caret"></span>
+					  	</button>
+					  	<ul class="dropdown-menu">
+					    	<li><a href="#">Cat 1</a></li>
+					    	<li><a href="#">Cat 2</a></li>
+					  	</ul>
+					</div>
+				</div>
+				<a href="#">Hot categories 1</a>
+				<a href="#">Hot categories 2</a>
+				<!-- <select id="categorySelect">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+				<input class="searchField" type="text" name="search" placeholder="Search..." id="searchField">
+				<button class="btn btn-primary" id="askQuestion">Search</button> -->
+			</div>
+
+
+
+
+			<div class="questions">
+
+
+				<div class="questionForm question">
+					<h4>Ask a new question here</h4>
+					<div class="col-lg-8">
+				    	<div class="input-group">
+					      	<input type="text" class="form-control" placeholder="Title" id = "questionTitle">
+					      	<input type="text" class="form-control" placeholder="Description" id = "questionDescription">
+					      	<span>
+					      	<p></p>
+
+				        	<button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Ask the question!</button>
+
+				        	</span>
+						</div>
+					</div>
+<!-- 					<input class="searchField" type="text" name="answer" placeholder="Ask a question" id="newQuestionInput">
+					<button class="btn btn-primary">Ask</button> -->
+				</div>
+
+				<div class="question shadowedBox">
+					<div class="questionInfo">
+						<h3 class="questionTitle">Sample Question No. 1</h3>
+						<p class="questionContent">Sample Question Description.  Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+					</div>
+					<div class="options">
+<!-- 						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-primary upvote">^</button>
+						<button class="btn btn-primary downvote">V</button>
+						<button class="btn btn-primary comment">Comment</button>
+					</div>
+				</div>
+				<div class="question shadowedBox">
+					<div class="questionInfo">
+						<h3 class="questionTitle">Titles will go here?</h3>
+						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+					</div>
+					<div class="options">
+ 						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
+						</button> -->
+						<button class="btn btn-primary upvote">^</button>
+						<button class="btn btn-primary downvote">V</button>
+						<button class="btn btn-primary comment">Comment</button>
+					</div>
+				</div>
+<!--
+				<div class="question shadowedBox">
+					<div class="questionInfo">
+						<h3 class="questionTitle">Titles will go here?</h3>
+						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+					</div>
+					<div class="options">
+ 						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-primary upvote">^</button>
+						<button class="btn btn-primary downvote">V</button>
+						<button class="btn btn-primary comment">Comment</button>
+					</div>
+				</div>
+				<div class="question shadowedBox">
+					<div class="questionInfo">
+						<h3 class="questionTitle">Titles will go here?</h3>
+						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+					</div>
+					<div class="options">
+ 						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-default btn-lg">
+	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
+						</button>
+						<button class="btn btn-primary upvote">^</button>
+						<button class="btn btn-primary downvote">V</button>
+						<button class="btn btn-primary comment">Comment</button>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</body>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+
+
+<script>
+var questionsList = [];
+var questionId = 0;
+var newQuestionTitle = document.getElementById("questionTitle");
+var newQuestionDescription = document.getElementById("questionDescription");
+function insertQ () {
+	//console.log(newQuestionTitle.value)
+	//console.log(newQuestionDescription.value)
+    displayQ();
+    clearQ();
+}
+function displayQ(){
+	questionId += 1;
+	console.log(questionId)
+  	questionsList.push({id: questionId, title: newQuestionTitle.value, des:newQuestionDescription.value })
+  	$(".questions").append($('<div class="question shadowedBox">')
+  	.append($('<div class="questionInfo">')
+  		.append($('<h3 class="questionTitle">')
+  		.append($("<p>").append(newQuestionTitle.value)))
+  		.append($('<p class="questionContent">').append($("<p>").append(newQuestionDescription.value))))
+  		.append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
+  		));
+  	console.log(questionsList)
+}
+function clearQ(){
+  	newQuestionTitle.value = "";
+  	newQuestionDescription.value = "";
+}
+</script>
