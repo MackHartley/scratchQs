@@ -17,4 +17,4 @@ class Answer(models.Model):
 	content = models.TextField()
 	votes = models.IntegerField(default=0)
 	def __str__(self):
-		return '(Question: %s) (Content: %s)' % (self.question, self.content)
+		return 'Question: %s (Content: %s)' % (self.question, self.content)
