@@ -13,6 +13,7 @@ class Question(models.Model):
 		return 'question: %s' % (self.title)
 
 class Answer(models.Model):
+	question = models.ForeignKey(Question, on_delete=models.CASCADE)
 	content = models.TextField()
 	votes = models.IntegerField(default=0)
 
