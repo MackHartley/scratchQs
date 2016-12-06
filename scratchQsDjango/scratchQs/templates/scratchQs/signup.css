@@ -1,0 +1,13 @@
+
+.navbar-brand{
+	font-size: 48;
+	font-family: Georgia;
+}
+
+.form-control{
+	margin-bottom: 1em;
+}
+
+#c-title{
+	text-align: center;
+}
