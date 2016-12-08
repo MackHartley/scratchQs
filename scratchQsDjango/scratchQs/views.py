@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from .models import Answer, Question
 import json
+from django.template import loader
 
 
 # Create your views here.
@@ -55,6 +56,11 @@ def add_answer(request):
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
 
-
-	
+def index(request):
+	question_list = Question.objects.all()
+	template = loader.get_template('scratchQs/index.html')
+	context = {
+		'question_list': question_list,
+	}
+	return HttpResponse(template.render(context, request))
 
