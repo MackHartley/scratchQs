@@ -55,6 +55,7 @@ def add_answer(request):
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
 
-
+def signup(request):
+	return render(request, "scratchQs/signup.html", {})
 	
 
