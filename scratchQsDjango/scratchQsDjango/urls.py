@@ -19,7 +19,8 @@ from scratchQs import views as scratchq_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^scratchQs/$', scratchq_views.questions, name="index"),
+    url(r'^scratchQs/$', scratchq_views.index, name="index"),
     url(r'^scratchQs/(?P<question_id>[0-9]+)/$', scratchq_views.answers, name="answers"),
     url(r'^scratchQs/signup', scratchq_views.signup, name="signup"),
+    url(r'^scratchQs/answer/$', scratchq_views.answer_page, name="answer_page") #not working yet
 ]
