@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="templates/main.css">
-    <link rel="stylesheet" href="../../js/question_page.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+<!--     <link rel="stylesheet" type="text/css" href="{% static 'scratchQs/main.css' %}" /> -->
+
+    <link rel="stylesheet" type="text/css" href="main.css" />
+
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
 
     <meta charset="UTF-8">
-    <title>question page</title>
+    <title>Individual Question</title>
 </head>
 <body>
     <nav class="navbar navbar-default header-nav">
 	    <div class="container">
-	      	<a class="navbar-brand" href="index.html">Scratch Q's</a>
+	      	<a class="navbar-brand" href="{% url 'index'%}">Scratch Q's</a>
 	      	<div class="collapse navbar-collapse" id="navbar">
 		      	<ul class="nav navbar-nav navbar-right">
 		        	<li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
@@ -48,10 +50,10 @@
 	</div>
 
     <div class = "container">
-        <div class="replies">
+        <div class = "questions">
+            <h3>Sample Question No. 1</h3>
             <div class="question shadowedBox">
                 <div class="questionInfo">
-                    <h3 class="questionTitle">Sample Question No. 1</h3>
                     <p class="questionContent">Sample Question Description.  Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
                 </div>
                 <div class="options">
@@ -59,23 +61,26 @@
                     <button class="btn btn-primary downvote">v</button>
                 </div>
             </div>
-
-			<div class="reply">
-                <br>
-                <div class="col-lg-4">
-                    <div class="input-group">
-                        <input id="user_answer" type="text" maxlength="100">
-                        <input type="submit" value="Add a new answer" onclick="insertA(\''+div_id+'\')"></div><p>
-                    </div>
-                </div>
         </div>
+        <div class="questionForm question">
+            <h4>Add a new answer here</h4>
+            <div class="col-lg-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Description" id = "questionDescription">
+                    <span>
+                    <p></p>
+                    <button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Add a new answer!</button>
+                    </span>
+                </div>
+            </div>
+        </div>        
     </div>
 </body>
 <!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>
 
-<script>
+<!-- <script>
 var answerList = [];
 var answerId = 0;
 var newAnswer = document.getElementById("answerText");
@@ -93,4 +98,30 @@ function insertA(div_id){
           .append($("<p>").append("test")));
 }
 
+</script> -->
+
+<script>
+var questionsList = [];
+var questionId = 0;
+
+var newQuestionDescription = document.getElementById("questionDescription");
+function insertQ () {
+    displayQ();
+    clearQ();
+}
+function displayQ(){
+    questionId += 1;
+    console.log(questionId)
+    questionsList.push({id: questionId, des:newQuestionDescription.value })
+    $(".questions").append($('<div class="question shadowedBox">')
+        .append($('<div class="questionInfo">')
+        .append($('<p class="questionContent">')
+            .append($("<p>").append(newQuestionDescription.value))))
+        .append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
+        ));
+    console.log(questionsList)
+}
+function clearQ(){
+    newQuestionDescription.value = "";
+}
 </script>

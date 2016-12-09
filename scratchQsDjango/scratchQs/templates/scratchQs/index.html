@@ -1,7 +1,6 @@
 <html>
 {% load static %}
 <head>
-	<!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -105,21 +104,12 @@
 				</div>
 				<a href="#">Hot categories 1</a>
 				<a href="#">Hot categories 2</a>
-				<!-- <select id="categorySelect">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-				</select>
-				<input class="searchField" type="text" name="search" placeholder="Search..." id="searchField">
-				<button class="btn btn-primary" id="askQuestion">Search</button> -->
 			</div>
 
 
 
 
 			<div class="questions">
-
 
 				<div class="questionForm question">
 					<h4>Ask a new question here</h4>
@@ -145,22 +135,8 @@
 						<p class="questionContent">Sample Question Description.  Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
 					</div>
 					<div class="options">
-<!-- 						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
-						</button>
-						<button class="btn btn-primary upvote">^</button>
-						<button class="btn btn-primary downvote">V</button>
-						<button class="btn btn-primary comment">Comment</button>
-					</div>
-				</div>
-				<div class="question shadowedBox">
-					<div class="questionInfo">
-						<h3 class="questionTitle">Titles will go here?</h3>
-						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
-					</div>
+
+<!-- 				
 					<div class="options">
  						<button type="button" class="btn btn-default btn-lg">
 	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
@@ -173,12 +149,8 @@
 						<button class="btn btn-primary comment">Comment</button>
 					</div>
 				</div>
+
 <!--
-				<div class="question shadowedBox">
-					<div class="questionInfo">
-						<h3 class="questionTitle">Titles will go here?</h3>
-						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
-					</div>
 					<div class="options">
  						<button type="button" class="btn btn-default btn-lg">
 	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
@@ -232,12 +204,16 @@ function displayQ(){
 	questionId += 1;
 	console.log(questionId)
   	questionsList.push({id: questionId, title: newQuestionTitle.value, des:newQuestionDescription.value })
-  	$(".questions").append($('<div class="question shadowedBox">')
+  	$(".questions")
+  	.append($('<div class="question shadowedBox">')
   	.append($('<div class="questionInfo">')
   		.append($('<h3 class="questionTitle">')
-  		.append($("<p>").append(newQuestionTitle.value)))
-  		.append($('<p class="questionContent">').append($("<p>").append(newQuestionDescription.value))))
-  		.append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
+  			.append($("<p>")
+  				.append(newQuestionTitle.value)))
+  		.append($('<p class="questionContent">')
+  			.append($("<p>")
+  				.append(newQuestionDescription.value))))
+  	.append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
   		));
   	console.log(questionsList)
 }
