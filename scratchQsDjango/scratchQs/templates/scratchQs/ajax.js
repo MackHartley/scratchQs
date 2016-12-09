@@ -1,7 +1,7 @@
 function submitQuestion(){
-	var title = $("#question-title").val()
-	var content = $("#question-content").val()
-	var category = $("#question-category").val()
+	var title = $("#questionTitle").val()
+	var content = $("#questionDescription").val()
+	var category = $("#questionCategory").val()
 	$.ajax({
 		type: "POST"
 		url: "../add_question/"

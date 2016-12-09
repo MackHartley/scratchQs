@@ -128,10 +128,17 @@
 					      	<input type="text" class="form-control" placeholder="Title" id = "questionTitle">
 					      	<input type="text" class="form-control" placeholder="Description" id = "questionDescription">
 					      	<span>
-					      	<p></p>
-
-				        	<button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Ask the question!</button>
-
+								<div class="btn-group" role="group">
+						    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    			Choose Category
+						    		<span class="caret"></span>
+						  			</button>
+								  	<ul class="dropdown-menu">
+								    	<li><a href="#">Cat 1</a></li>
+								    	<li><a href="#">Cat 2</a></li>
+								  	</ul>
+								</div>
+					        	<button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Ask the question!</button>
 				        	</span>
 						</div>
 					</div>
