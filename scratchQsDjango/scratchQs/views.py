@@ -52,10 +52,15 @@ def index(request):
 
 
 def answers(request,question_id):
-	question = Question.objects.get(pk=question_id)
+	parent_question = Question.objects.get(pk=question_id)
 	answers = Answer.objects.filter(question_id=question_id)
-	context = {"title" : question.question_title, "answers" : answers}
-	return render(request,"answer_page.html", context)
+	a1 = Answer(question=parent_question, content="answer 1", pk=0)
+	a2 = Answer(question=parent_question, content="answer 2", pk=1)
+	a1.save()
+	a2.save()
+	print(len(answers))
+	context = {"title" : parent_question.title, "content":parent_question.content,"answers" : answers}
+	return render(request,"scratchQs/answer_page.html", context)
 
 
 # #The next functions all expect POST requests
