@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from .models import Answer, Question
 import json
+from django.template import loader
 
 
 # Create your views here.
@@ -19,7 +20,7 @@ import json
 #	content = models.TextField()
 #	votes = models.IntegerField(default=0)
 
-def questions(request):
+def index(request):
 	#pre load data
 	q1 = Question(title="title 1", content="content 1", pk=0)
 	q2 = Question(title="title 2", content="content 2", pk=1)
@@ -49,6 +50,14 @@ def questions(request):
 # 	context = {"title" : question.question_title, "answers" : answers}
 # 	return render(request,"answer_page.html", context)
 
+
+def answers(request,question_id):
+	question = Question.objects.get(pk=question_id)
+	answers = Answer.objects.filter(question_id=question_id)
+	context = {"title" : question.question_title, "answers" : answers}
+	return render(request,"answer_page.html", context)
+
+
 # #The next functions all expect POST requests
 def add_question(request):
 	questionTitle = request.POST.get("title")
@@ -68,7 +77,7 @@ def add_question(request):
 # 	response = {"status" : 200, "answer_id" : newAnswer.pk, "answer_text" : answerText}
 # 	return HttpResponse(json.dumps(response), content_type="application/json")
 
+def signup(request):
+	return render(request, "scratchQs/signup.html", {})
 
-
-	
 

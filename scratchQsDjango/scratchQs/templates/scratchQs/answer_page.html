@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!--     <link rel="stylesheet" type="text/css" href="{% static 'scratchQs/main.css' %}" /> -->
+
+    <link rel="stylesheet" type="text/css" href="main.css" />
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+
+    <meta charset="UTF-8">
+    <title>Individual Question</title>
+</head>
+<body>
+    <nav class="navbar navbar-default header-nav">
+	    <div class="container">
+	      	<a class="navbar-brand" href="{% url 'index'%}">Scratch Q's</a>
+	      	<div class="collapse navbar-collapse" id="navbar">
+		      	<ul class="nav navbar-nav navbar-right">
+		        	<li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
+		        	<li><a href="signup.html">Sign Up</a></li>
+		      	</ul>
+	      	</div>
+	    </div>
+  	</nav>
+
+    <div class = "login">
+		<div name = "login" class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		    <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1><br>
+					<form>
+					<input type="text" name="user" placeholder="Username">
+					<input type="password" name="pass" placeholder="Password">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+					</form>
+
+					<div class="login-help">
+					    <a href="signup.html">Register a new account</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class = "container">
+        <div class = "questions">
+            <h3>Sample Question No. 1</h3>
+            <div class="question shadowedBox">
+                <div class="questionInfo">
+                    <p class="questionContent">Sample Question Description.  Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+                </div>
+                <div class="options">
+                    <button class="btn btn-primary upvote">^</button>
+                    <button class="btn btn-primary downvote">v</button>
+                </div>
+            </div>
+        </div>
+        <div class="questionForm question">
+            <h4>Add a new answer here</h4>
+            <div class="col-lg-8">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Description" id = "questionDescription">
+                    <span>
+                    <p></p>
+                    <button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Add a new answer!</button>
+                    </span>
+                </div>
+            </div>
+        </div>        
+    </div>
+</body>
+<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
+
+<!-- <script>
+var answerList = [];
+var answerId = 0;
+var newAnswer = document.getElementById("answerText");
+
+function displayA() {
+    answerId += 1;
+    answerList.push({id: answerId, text: newAnswer.value})
+    $(".replies").append($('<div class="reply">'))
+            .append($('<div class="">'))
+}
+
+function insertA(div_id){
+  var selector = "#"+div_id;
+  $(selector).append($('<div id=answer1; style="width: 500px; margin-bottom:6px">')
+          .append($("<p>").append("test")));
+}
+
+</script> -->
+
+<script>
+var questionsList = [];
+var questionId = 0;
+
+var newQuestionDescription = document.getElementById("questionDescription");
+function insertQ () {
+    displayQ();
+    clearQ();
+}
+function displayQ(){
+    questionId += 1;
+    console.log(questionId)
+    questionsList.push({id: questionId, des:newQuestionDescription.value })
+    $(".questions").append($('<div class="question shadowedBox">')
+        .append($('<div class="questionInfo">')
+        .append($('<p class="questionContent">')
+            .append($("<p>").append(newQuestionDescription.value))))
+        .append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
+        ));
+    console.log(questionsList)
+}
+function clearQ(){
+    newQuestionDescription.value = "";
+}
+</script>
