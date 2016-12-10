@@ -19,6 +19,6 @@ from scratchQs import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^questions/', views.questions, name="questions")
+    url(r'^questions/', views.questions, name="questions"),
     #url(r'^answer_page/(?P<question_id>[0-9]+)', views.answer, name="answer")
 ]

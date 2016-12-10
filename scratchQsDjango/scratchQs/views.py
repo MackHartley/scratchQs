@@ -20,9 +20,23 @@ import json
 #	votes = models.IntegerField(default=0)
 
 def questions(request):
+	#pre load data
+	q1 = Question(title="title 1", content="content 1", pk=0)
+	q2 = Question(title="title 2", content="content 2", pk=1)
+	q1.save()
+	q2.save()
+	questions = Question.objects.all()
+	print(len(questions))
+	questionList = []
+	questionList.append(q1)
+	questionList.append(q2)
+	context = {"questions" : questionList}
+	print(context)
 	# questionList = []
 	# questions = Question.objects.all()
+	# print(len(questions))
 	# for question in questions:
+
 	# 	question_context = {"title":question.title, "content": question.content, "votes":question.votes,
 	# 		"category": question.category, "id" : question.pk}
 	# 	questionList.append(question_context)
@@ -36,13 +50,13 @@ def questions(request):
 # 	return render(request,"answer_page.html", context)
 
 # #The next functions all expect POST requests
-# def add_question(request):
-# 	questionTitle = request.POST.get("title")
-# 	questionContent = request.Post.get("content")
-# 	newQuestion = Question(questionTitle,questionContent)
-# 	newQuestion.save()
-# 	response = {"status" : 200, "question_id" : newQuestion.pk, "title":question.title, "content": question.content}
-# 	return HttpResponse(json.dumps(response), content_type="application/json")
+def add_question(request):
+	questionTitle = request.POST.get("title")
+	questionContent = request.Post.get("content")
+	newQuestion = Question(questionTitle,questionContent)
+	newQuestion.save()
+	response = {"status" : 200, "question_id" : newQuestion.pk, "title":question.title, "content": question.content}
+	return HttpResponse(json.dumps(response), content_type="application/json")
 
 
 # def add_answer(request):
