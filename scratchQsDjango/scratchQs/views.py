@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
-from .models import Answer, Question
+from .models import Answer, Question, Community
 import json
 from django.template import loader
 
@@ -18,16 +18,20 @@ class IndexView(generic.ListView):
     template_name = 'scratchQs/index.html'
     context_object_name = 'questions'
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context.update({
+            'communities': Community.objects.all(),
+        })
+        return context
+
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.all()
+        return Question.objects.order_by("-votes")
+
 
 # def index(request):
 # 	#pre load data
-# 	q1 = Question(title="title 1", content="content 1", pk=0)
-# 	q2 = Question(title="title 2", content="content 2", pk=1)
-# 	q1.save()
-# 	q2.save()
 # 	context = {Question.objects.all()}
 # 	# print(len(questions))
 # 	# questionList = []
@@ -47,26 +51,67 @@ class IndexView(generic.ListView):
 # 	# context = {"questions" : questionList}
 # 	return render(request, "scratchQs/index.html", context)
 
-# def answer(request,question_id):
-# 	question = Question.objects.get(pk=question_id)
-# 	answers = Answer.objects.filter(question_id=question_id)
-# 	context = {"title" : question.question_title, "answers" : answers}
-# 	return render(request,"answer_page.html", context)
-
 
 def answers(request,question_id):
 	parent_question = Question.objects.get(pk=question_id)
 	answers = Answer.objects.filter(question_id=question_id)
-	a1 = Answer(question=parent_question, content="answer 1", pk=0)
-	a2 = Answer(question=parent_question, content="answer 2", pk=1)
-	a1.save()
-	a2.save()
-	print(len(answers))
+	answers = answers.order_by("-votes")
 	context = {"title" : parent_question.title, "content":parent_question.content,"answers" : answers}
 	return render(request,"scratchQs/answer_page.html", context)
 
 
+
 # #The next functions all expect POST requests
+def community_questions(request, community_id):
+	parent_community = Community.objects.get(pk=community_id)
+    #print(parent_community.name)
+    #print(Question.objects.filter(community=parent_community.name))
+	
+	filtered_questions = Question.objects.filter(community=parent_community.name)
+ 	context = {"questions": filtered_questions, 'communities': Community.objects.all()}
+
+ 	return render(request,"scratchQs/index.html",context)
+
+# The next functions all expect POST requests
+def upvote_question(request):
+	parent_question_id = request.POST.get("question_id")
+	print(parent_question_id)
+	parent_question = Question.objects.get(pk=parent_question_id)
+	parent_question.votes = parent_question.votes+1
+	parent_question.save()
+	response = {"status" : 200, "question_id" : parent_question.pk, "title":parent_question.title, "content": parent_question.content, "votes": parent_question.votes}
+	return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+def downvote_question(request):
+	parent_question_id = request.POST.get("question_id")
+	print(parent_question_id)
+	parent_question = Question.objects.get(pk=parent_question_id)
+	parent_question.votes = parent_question.votes-1
+	parent_question.save()
+	response = {"status" : 200, "question_id" : parent_question.pk, "title":parent_question.title, "content": parent_question.content, "votes": parent_question.votes}
+	return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+def upvote_answer(request):
+	parent_answer_id = request.POST.get("answer_id")
+	print(parent_answer_id)
+	parent_answer = Answer.objects.get(pk=parent_answer_id)
+	parent_answer.votes = parent_answer.votes+1
+	parent_answer.save()
+	response = {"status" : 200, "answer_id" : parent_answer.pk, "content": parent_answer.content, "votes": parent_answer.votes}
+	return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+def downvote_answer(request):
+	parent_answer_id = request.POST.get("answer_id")
+	print(parent_answer_id)
+	parent_answer = Answer.objects.get(pk=parent_answer_id)
+	parent_answer.votes = parent_answer.votes-1
+	parent_answer.save()
+	response = {"status" : 200, "answer_id" : parent_answer.pk, "content": parent_answer.content, "votes": parent_answer.votes}
+	return HttpResponse(json.dumps(response), content_type="application/json")
+
 @csrf_exempt
 def add_question(request):
 	if request.method == "POST":

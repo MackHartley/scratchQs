@@ -58,8 +58,8 @@
                     <p class="questionContent">{{content}}</p>
                 </div>
                 <div class="options">
-                    <button class="btn btn-primary upvote">^</button>
-                    <button class="btn btn-primary downvote">v</button>
+                    <button class="btn btn-primary upvote">upvote</button>
+                    <button class="btn btn-primary downvote">downvote</button>
                 </div>
             </div>
         </div>
@@ -72,9 +72,9 @@
                         
                     </div>
                     <div class="options">
-                        <button class="btn btn-primary upvote">^</button>
-                        <button class="btn btn-primary downvote">V</button>
-                        <button class="btn btn-primary comment">Comment</button>
+                        <button id = {{answer.id}} class="btn btn-primary upvote" onClick="upvote_answer(this.id)">upvote</button>
+                        <button id = {{answer.id}} class="btn btn-primary downvote" onClick="downvote_answer(this.id)">downvote</button>
+                        <button class = "answerVote"># Votes: {{answer.votes}}
                     </div>
                    
             </div>
@@ -102,6 +102,52 @@
 </html>
 
 <script>
+$.ajaxSetup({ 
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     } 
+});
+
+function upvote_answer(answer_id){
+    console.log(answer_id);
+    $.ajax({
+        type: "POST",
+        url: "/upvote_answer",
+        data: {"answer_id":answer_id},
+        success: function() {location.reload();},
+        dataType: "text"
+});
+}
+
+function downvote_answer(answer_id){
+    console.log(answer_id);
+    $.ajax({
+        type: "POST",
+        url: "/downvote_answer",
+        data: {"answer_id":answer_id},
+        success: function() {location.reload();},
+        dataType: "text"
+});
+}
+
 var questionsList = [];
 var questionId = 0;
 
@@ -118,7 +164,7 @@ function displayQ(){
         .append($('<div class="questionInfo">')
         .append($('<p class="questionContent">')
             .append($("<p>").append(newQuestionDescription.value))))
-        .append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
+        .append($('<div class="options"><button class="btn btn-primary upvote">upvote</button><button class="btn btn-primary downvote">downvote</button>')
         ));
     console.log(questionsList)
 }

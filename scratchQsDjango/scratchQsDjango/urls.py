@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 # from scratchQs import views
 from scratchQs import views as scratchq_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^scratchQs/admin/', admin.site.urls),
@@ -24,7 +25,13 @@ urlpatterns = [
     url(r'^scratchQs/questions/', scratchq_views.IndexView.as_view(), name="index"),
     #url(r'^scratchQs/questions/', scratchq_views.index, name="index"),
     url(r'^scratchQs/(?P<question_id>[0-9]+)/$', scratchq_views.answers, name="answers"),
+    url(r'^scratchQs/community/(?P<community_id>[0-9]+)/$', scratchq_views.community_questions, name="community_questions"),
     url(r'^scratchQs/signup', scratchq_views.signup, name="signup"),
     url(r'^scratchQs/add_question', scratchq_views.add_question),
     #url(r'^scratchQs/answer/$', scratchq_views.answer_page, name="answer_page") #not working yet
+    url(r'^upvote_question', scratchq_views.upvote_question, name="upvote_question"),
+    url(r'^downvote_question', scratchq_views.downvote_question, name="downvote_question"),
+    url(r'^upvote_answer', scratchq_views.upvote_answer, name="upvote_answer"),
+    url(r'^downvote_answer', scratchq_views.downvote_answer, name="downvote_answer"),
+    # url(r'^scratchQs/loginn/$', auth_views.login, name='login'), #still working
 ]
