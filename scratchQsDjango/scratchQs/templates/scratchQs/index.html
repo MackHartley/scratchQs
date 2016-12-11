@@ -184,9 +184,9 @@ function submitQuestion(){
 			location.reload()
 		}
 	});
-}	
+}
 
-$.ajaxSetup({ 
+$.ajaxSetup({
      beforeSend: function(xhr, settings) {
          function getCookie(name) {
              var cookieValue = null;
@@ -271,7 +271,7 @@ function displayQ(){
   		.append($('<p class="questionContent">')
   			.append($("<p>")
   				.append(newQuestionDescription.value))))
-  	.append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
+  	.append($('<div class="options"><button class="btn btn-primary upvote">upvote</button><button class="btn btn-primary downvote">downvote</button>')
   		));
   	console.log(questionsList)
 }
