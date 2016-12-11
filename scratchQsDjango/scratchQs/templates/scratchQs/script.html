@@ -1,0 +1,51 @@
+<html>
+  <body>
+    <script>
+
+function nav_to_answer(question_id) {
+    //set url to answer_page/question_id
+    var path = "/scratchQs/" + question_id;
+    window.location.pathname=path;
+}
+
+function filter_questions(community_id) {
+    //set url to answer_page/question_id
+    var path = "/scratchQs/community/" + community_id;
+    window.location.pathname=path;
+}
+
+var questionsList = [];
+var questionId = 0;
+var newQuestionTitle = document.getElementById("questionTitle");
+var newQuestionDescription = document.getElementById("questionDescription");
+function insertQ () {
+  //console.log(newQuestionTitle.value)
+  //console.log(newQuestionDescription.value)
+    displayQ();
+    clearQ();
+}
+function displayQ(){
+  questionId += 1;
+  console.log(questionId)
+    questionsList.push({id: questionId, title: newQuestionTitle.value, des:newQuestionDescription.value })
+    $(".questions")
+    .append($('<div class="question shadowedBox">')
+    .append($('<div class="questionInfo">')
+      .append($('<h3 class="questionTitle">')
+        .append($("<p>")
+          .append(newQuestionTitle.value)))
+      .append($('<p class="questionContent">')
+        .append($("<p>")
+          .append(newQuestionDescription.value))))
+    .append($('<div class="options"><button class="btn btn-primary upvote">upvote</button><button class="btn btn-primary downvote">downvote</button>')
+      ));
+    console.log(questionsList)
+}
+function clearQ(){
+    newQuestionTitle.value = "";
+    newQuestionDescription.value = "";
+}
+
+    </script>
+  </body>
+</html>

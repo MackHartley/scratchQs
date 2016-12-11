@@ -1,6 +1,9 @@
 <html>
 {% load static %}
-<head>
+{% include 'scratchQs/ajax.html' %}
+{% include 'scratchQs/script.html' %}
+
+ <head>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -8,8 +11,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 	<link rel="stylesheet" type="text/css" href="{% static 'scratchQs/main.css' %}" />
-
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
 	<meta charset="UTF-8">
 	<title>ScratchQs</title>
@@ -87,9 +88,9 @@
 		<div class="content col-sm-offset-3">
 			<div class="searchDiv"> <!-- This will be nice: http://www.w3schools.com/howto/howto_css_animated_search.asp -->
 		    	<div class="input-group">
-			      	<input type="text" class="form-control" placeholder="Search for new topics...">
+			      	<input id = "search_question" type="text" class="form-control" placeholder="Search for new topics...">
 			      	<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button">Search</button>
+		        		<button class="btn btn-default" type="button" onClick = "search_question()">Search</button>
 		      		</span>
 		    	</div><!-- /input-group -->
 		    	<label>Filter the page by:</label>
@@ -116,11 +117,12 @@
 						    		<span class="caret"></span>
 						  			</button>
 								  	<ul class="dropdown-menu">
-								    	<li><a href="#">Cat 1</a></li>
-								    	<li><a href="#">Cat 2</a></li>
+								  		{% for community in communities %}
+								    	<li><a href="#">{{community.name}}</a></li>
+								    	{% endfor %}
 								  	</ul>
 								</div>
-					        	<button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Ask the question!</button>
+					        	<button class="btn btn-default" type="button" id = "askButton" onclick="submitQuestion()">Ask the question!</button>
 				        	</span>
 						</div>
 					</div>
@@ -148,108 +150,17 @@
 		</div>
 	</div>
 </body>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	  crossorigin="anonymous"></script>
-	<script src="ajax.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js "></script>
 </html>
 
 
 <script>
-$.ajaxSetup({ 
-     beforeSend: function(xhr, settings) {
-         function getCookie(name) {
-             var cookieValue = null;
-             if (document.cookie && document.cookie != '') {
-                 var cookies = document.cookie.split(';');
-                 for (var i = 0; i < cookies.length; i++) {
-                     var cookie = jQuery.trim(cookies[i]);
-                     // Does this cookie string begin with the name we want?
-                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                         break;
-                     }
-                 }
-             }
-             return cookieValue;
-         }
-         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-             // Only send the token to relative URLs i.e. locally.
-             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-         }
-     } 
-});
 
-function upvote_question(question_id){
-	console.log(question_id);
-	$.ajax({
-		type: "POST",
-  		url: "/upvote_question",
-  		data: {"question_id":question_id},
-  		success: function() {location.reload();},
-  		dataType: "text"
-});
-}
-
-function downvote_question(question_id){
-	console.log(question_id);
-	$.ajax({
-		type: "POST",
-  		url: "/downvote_question",
-  		data: {"question_id":question_id},
-  		success: function() {location.reload();},
-  		dataType: "text"
-});
-}
-
-
-function nav_to_answer(question_id) {
-    //set url to answer_page/question_id
-    var path = "/scratchQs/" + question_id;
-    window.location.pathname=path;
-}
-
-
-function filter_questions(community_id) {
-    //set url to answer_page/question_id
-    var path = "/scratchQs/community/" + community_id;
-    window.location.pathname=path;
-}
-
-
-
-
-var questionsList = [];
-var questionId = 0;
-var newQuestionTitle = document.getElementById("questionTitle");
-var newQuestionDescription = document.getElementById("questionDescription");
-function insertQ () {
-	//console.log(newQuestionTitle.value)
-	//console.log(newQuestionDescription.value)
-    displayQ();
-    clearQ();
-}
-function displayQ(){
-	questionId += 1;
-	console.log(questionId)
-  	questionsList.push({id: questionId, title: newQuestionTitle.value, des:newQuestionDescription.value })
-  	$(".questions")
-  	.append($('<div class="question shadowedBox">')
-  	.append($('<div class="questionInfo">')
-  		.append($('<h3 class="questionTitle">')
-  			.append($("<p>")
-  				.append(newQuestionTitle.value)))
-  		.append($('<p class="questionContent">')
-  			.append($("<p>")
-  				.append(newQuestionDescription.value))))
-  	.append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
-  		));
-  	console.log(questionsList)
-}
-function clearQ(){
-  	newQuestionTitle.value = "";
-  	newQuestionDescription.value = "";
-}
 </script>
+
