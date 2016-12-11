@@ -71,6 +71,16 @@ def community_questions(request, community_id):
 
 
 
+def order_by_answers(request, community_id):
+	parent_community = Community.objects.get(pk=community_id)
+    #print(parent_community.name)
+    #print(Question.objects.filter(community=parent_community.name))
+	
+	filtered_questions = Question.objects.filter(community=parent_community.name).order_by("votes")
+ 	context = {"questions": filtered_questions, 'communities': Community.objects.all()}
+
+ 	return render(request,"scratchQs/index.html",context)
+
 
 # The next functions all expect POST requests
 def upvote_question(request):
