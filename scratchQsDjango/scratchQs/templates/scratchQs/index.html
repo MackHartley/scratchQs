@@ -137,56 +137,20 @@
 				</div>
 
 				<div class="question shadowedBox">
+					{% for question in questions %}
 					<div class="questionInfo">
-						<h3 class="questionTitle">Sample Question No. 1</h3>
-						<p class="questionContent">Sample Question Description.  Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+							<h3 class="questionTitle" onClick="nav_to_answer(this.id)" id={{question.id}}>{{question.title}}</h3>
+							<p class="questionContent">{{question.content}}</p>
 					</div>
 					<div class="options">
-
-<!-- 				
-					<div class="options">
- 						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
-						</button> -->
 						<button class="btn btn-primary upvote">^</button>
 						<button class="btn btn-primary downvote">V</button>
 						<button class="btn btn-primary comment">Comment</button>
 					</div>
+					{% endfor %}
 				</div>
 
-<!--
-					<div class="options">
- 						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
-						</button>
-						<button class="btn btn-primary upvote">^</button>
-						<button class="btn btn-primary downvote">V</button>
-						<button class="btn btn-primary comment">Comment</button>
-					</div>
-				</div>
-				<div class="question shadowedBox">
-					<div class="questionInfo">
-						<h3 class="questionTitle">Titles will go here?</h3>
-						<p class="questionContent">Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
-					</div>
-					<div class="options">
- 						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-up upvote" aria-hidden="true"></span>
-						</button>
-						<button type="button" class="btn btn-default btn-lg">
-	  						<span class="glyphicon glyphicon-thumbs-down downvote" aria-hidden="true"></span>
-						</button>
-						<button class="btn btn-primary upvote">^</button>
-						<button class="btn btn-primary downvote">V</button>
-						<button class="btn btn-primary comment">Comment</button>
-					</div>
-				</div> -->
+
 			</div>
 		</div>
 	</div>
@@ -201,6 +165,12 @@
 
 
 <script>
+function nav_to_answer(question_id) {
+    //set url to answer_page/question_id
+    var path = "/scratchQs/" + question_id;
+    window.location.pathname=path;
+}
+
 var questionsList = [];
 var questionId = 0;
 var newQuestionTitle = document.getElementById("questionTitle");

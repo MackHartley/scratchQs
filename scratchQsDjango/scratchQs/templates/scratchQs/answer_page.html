@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -7,9 +8,9 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!--     <link rel="stylesheet" type="text/css" href="{% static 'scratchQs/main.css' %}" /> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'scratchQs/main.css' %}" />
 
-    <link rel="stylesheet" type="text/css" href="main.css" />
+<!--     <link rel = "stylesheet" type="text/css" href="main.css" /> -->
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
@@ -51,10 +52,10 @@
 
     <div class = "container">
         <div class = "questions">
-            <h3>Sample Question No. 1</h3>
+            <h3>{{title}}</h3>
             <div class="question shadowedBox">
                 <div class="questionInfo">
-                    <p class="questionContent">Sample Question Description.  Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here. Text will go here.Text will go here. Text will go here. Text will go here. Text will go here.</p>
+                    <p class="questionContent">{{content}}</p>
                 </div>
                 <div class="options">
                     <button class="btn btn-primary upvote">^</button>
@@ -62,6 +63,26 @@
                 </div>
             </div>
         </div>
+
+            {% for answer in answers %}
+            <div class="question shadowedBox">
+
+                    <div class="questionInfo">
+                            <p class="questionContent">{{answer.content}}</p>
+                        
+                    </div>
+                    <div class="options">
+                        <button class="btn btn-primary upvote">^</button>
+                        <button class="btn btn-primary downvote">V</button>
+                        <button class="btn btn-primary comment">Comment</button>
+                    </div>
+                   
+            </div>
+             {% endfor %}
+                    
+    </div>
+
+    <div class = "container">
         <div class="questionForm question">
             <h4>Add a new answer here</h4>
             <div class="col-lg-8">
@@ -79,26 +100,6 @@
 <!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>
-
-<!-- <script>
-var answerList = [];
-var answerId = 0;
-var newAnswer = document.getElementById("answerText");
-
-function displayA() {
-    answerId += 1;
-    answerList.push({id: answerId, text: newAnswer.value})
-    $(".replies").append($('<div class="reply">'))
-            .append($('<div class="">'))
-}
-
-function insertA(div_id){
-  var selector = "#"+div_id;
-  $(selector).append($('<div id=answer1; style="width: 500px; margin-bottom:6px">')
-          .append($("<p>").append("test")));
-}
-
-</script> -->
 
 <script>
 var questionsList = [];
