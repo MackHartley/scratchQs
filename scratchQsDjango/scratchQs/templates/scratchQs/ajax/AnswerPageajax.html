@@ -1,0 +1,20 @@
+<html>
+	<body>
+		<script>
+
+function submitAnswer(){
+	var desc = $("#questionDescription")
+	$.ajax({
+		type: "POST",
+		url: "../add_answer/"
+		data: {"content": desc}
+		error: function(){alert("Error: submitAnswer(), AnswerPageajax.html")}
+		success: function(response){
+			location.reload();
+		}
+	})
+}
+
+		</script>
+	</body>
+</html>

@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^downvote_question', scratchq_views.downvote_question, name="downvote_question"),
     url(r'^upvote_answer', scratchq_views.upvote_answer, name="upvote_answer"),
     url(r'^downvote_answer', scratchq_views.downvote_answer, name="downvote_answer"),
+    # url(r'^add_answer/', scratchq_views.add_answer, name="add_answer")
     # url(r'^scratchQs/loginn/$', auth_views.login, name='login'), #still working
 ]

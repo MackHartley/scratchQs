@@ -14,7 +14,7 @@ function submitQuestion(){
         "category": category,
       },
     datatype: "json",
-    error: function(){alert('Error!');},
+    error: function(){alert('Error: submitQuestion(), QuestionPageajax.html');},
     success: function(response) {
       location.reload()
     }
