@@ -53,9 +53,9 @@
 				<div class = "displayGroups">
 		    		<h2 class = "sideBarTitle"> My Groups</h2>
 					<ul class = "groupList">
-						<li>Mac Community</li>
-						<li>Shopping at Mac</li>
-						<li>COMP 346</li>
+					{% for community in communities %}
+						<li>{{community.name}}</li>
+					{% endfor %}
 					</ul>
 				</div>
 				<div class = "searchGroups">
@@ -78,6 +78,7 @@
 					<li>Dupre Hall</li>
 					<li>Mac Hack</li>
 					<li>Students for Justice</li>
+					
 				</ul>
 			</div>
 		</div>

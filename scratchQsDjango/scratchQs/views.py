@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
-from .models import Answer, Question
+from .models import Answer, Question, Community
 import json
 from django.template import loader
 
@@ -15,10 +15,23 @@ from django.views import generic
 class IndexView(generic.ListView):
     template_name = 'scratchQs/index.html'
     context_object_name = 'questions'
+    
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context.update({
+            'communities': Community.objects.all(),
+            'more_context': Question.objects.all(),
+        })
+        return context
 
     def get_queryset(self):
         """Return the last five published questions."""
         return Question.objects.all()
+
+
+
+
 
 # def index(request):
 # 	#pre load data
