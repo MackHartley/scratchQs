@@ -3,12 +3,13 @@ from django.shortcuts import HttpResponse
 from .models import Answer, Question, Community
 import json
 from django.template import loader
-
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 # Create your views here.
@@ -100,14 +101,18 @@ def downvote_answer(request):
 	response = {"status" : 200, "answer_id" : parent_answer.pk, "content": parent_answer.content, "votes": parent_answer.votes}
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
-
+@csrf_exempt
 def add_question(request):
-	questionTitle = request.POST.get("title")
-	questionContent = request.Post.get("content")
-	newQuestion = Question(questionTitle,questionContent)
-	newQuestion.save()
-	response = {"status" : 200, "question_id" : newQuestion.pk, "title":question.title, "content": question.content}
-	return HttpResponse(json.dumps(response), content_type="application/json")
+	if request.method == "POST":
+ 		questionTitle = request.POST.get("title")
+ 		questionContent = request.POST.get("content")
+ 		questionCategory = request.POST.get("category")
+ 		newQuestion = Question(title=questionTitle,content=questionContent,category=questionCategory)
+ 		newQuestion.save()
+ 		response = {"status" : 200, "title":newQuestion.title, "content": newQuestion.content, "category": newQuestion.category}
+ 		return HttpResponse(json.dumps(response), content_type="application/json")
+ 	else:
+ 		return HttpResponse("failure")
 
 # @csrf_exempt
 # def add_answer(request):
