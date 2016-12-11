@@ -140,13 +140,13 @@
 				<div class="question shadowedBox">
 					{% for question in questions %}
 					<div class="questionInfo">
-							<h3 class="questionTitle" onClick="nav_to_answer(this.id)" id={{question.id}}>{{question.title}}</h3>
+							<a style="cursor: pointer;"><h3 class="questionTitle" onClick="nav_to_answer(this.id)" id={{question.id}}>{{question.title}}</h3></a>
 							<p class="questionContent">{{question.content}}</p>
 					</div>
 					<div class="options">
 						<button class="btn btn-primary upvote">^</button>
 						<button class="btn btn-primary downvote">V</button>
-						<button class="btn btn-primary comment">Comment</button>
+						<button class = "questionVote"># Votes: {{question.votes}}</button>
 					</div>
 					{% endfor %}
 				</div>

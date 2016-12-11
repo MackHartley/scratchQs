@@ -33,5 +33,8 @@ class Answer(models.Model):
 	def __str__(self):
 		return 'Question: %s (Content: %s)' % (self.question, self.content)
 
-# filter by answer, question=question.object
-# "use artist.objects.get(id=1)" to get the object
+# class User(models.Model):
+# 	community = models.ForeignKey(Community, on_delete=models.CASCADE, default=None)
+# 	username = models.CharField(max_length = 50, unique = True)
+# 	def __str__(self):
+# 		return 'username: %s' % (self.name)

@@ -16,29 +16,20 @@ class IndexView(generic.ListView):
     template_name = 'scratchQs/index.html'
     context_object_name = 'questions'
     
-
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update({
             'communities': Community.objects.all(),
-            'more_context': Question.objects.all(),
         })
         return context
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Question.objects.all()
-
-
-
+        return Question.objects.order_by("-votes")
 
 
 # def index(request):
 # 	#pre load data
-# 	q1 = Question(title="title 1", content="content 1", pk=0)
-# 	q2 = Question(title="title 2", content="content 2", pk=1)
-# 	q1.save()
-# 	q2.save()
 # 	context = {Question.objects.all()}
 # 	# print(len(questions))
 # 	# questionList = []
@@ -58,21 +49,11 @@ class IndexView(generic.ListView):
 # 	# context = {"questions" : questionList}
 # 	return render(request, "scratchQs/index.html", context)
 
-# def answer(request,question_id):
-# 	question = Question.objects.get(pk=question_id)
-# 	answers = Answer.objects.filter(question_id=question_id)
-# 	context = {"title" : question.question_title, "answers" : answers}
-# 	return render(request,"answer_page.html", context)
-
 
 def answers(request,question_id):
 	parent_question = Question.objects.get(pk=question_id)
 	answers = Answer.objects.filter(question_id=question_id)
-	a1 = Answer(question=parent_question, content="answer 1", pk=0)
-	a2 = Answer(question=parent_question, content="answer 2", pk=1)
-	a1.save()
-	a2.save()
-	print(len(answers))
+	answers = answers.order_by("-votes")
 	context = {"title" : parent_question.title, "content":parent_question.content,"answers" : answers}
 	return render(request,"scratchQs/answer_page.html", context)
 
