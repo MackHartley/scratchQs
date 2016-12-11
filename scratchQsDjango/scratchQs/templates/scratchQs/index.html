@@ -9,8 +9,6 @@
 
 	<link rel="stylesheet" type="text/css" href="{% static 'scratchQs/main.css' %}" />
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
 	<meta charset="UTF-8">
 	<title>ScratchQs</title>
 </head>
@@ -128,7 +126,7 @@
 								    	<li><a href="#">Cat 2</a></li>
 								  	</ul>
 								</div>
-					        	<button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Ask the question!</button>
+					        	<button class="btn btn-default" type="button" id = "askButton" onclick="submitQuestion()">Ask the question!</button>
 				        	</span>
 						</div>
 					</div>
@@ -155,16 +153,35 @@
 		</div>
 	</div>
 </body>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
 	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	  crossorigin="anonymous"></script>
-	<script src="ajax.js"></script>
-</html>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js "></script>
 
 <script>
+// Would like to find a way to put this in a file
+function submitQuestion(){
+	var title = $("#questionTitle").val()
+	var content = $("#questionDescription").val()
+	var category = "CATEGORYSELECTNOTWORKING" //$("#questionCategory").val()
+	$.ajax({
+		type: "POST",
+		url: "../add_question/",
+		data: { "title": title,
+				"content": content,
+				"category": category,
+			},
+		datatype: "json",
+		error: function(){alert('Error!');},
+		success: function(response) {
+			location.reload()
+		}
+	});
+}
+
 function nav_to_answer(question_id) {
     //set url to answer_page/question_id
     var path = "/scratchQs/" + question_id;
@@ -203,3 +220,5 @@ function clearQ(){
   	newQuestionDescription.value = "";
 }
 </script>
+
+</html>
