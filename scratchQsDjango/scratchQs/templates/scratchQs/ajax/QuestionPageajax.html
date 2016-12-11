@@ -21,30 +21,6 @@ function submitQuestion(){
   });
 }
 
-$.ajaxSetup({
-     beforeSend: function(xhr, settings) {
-         function getCookie(name) {
-             var cookieValue = null;
-             if (document.cookie && document.cookie != '') {
-                 var cookies = document.cookie.split(';');
-                 for (var i = 0; i < cookies.length; i++) {
-                     var cookie = jQuery.trim(cookies[i]);
-                     // Does this cookie string begin with the name we want?
-                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                         break;
-                     }
-                 }
-             }
-             return cookieValue;
-         }
-         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-             // Only send the token to relative URLs i.e. locally.
-             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-         }
-     } 
-});
-
 function upvote_question(question_id){
   console.log(question_id);
   $.ajax({
@@ -66,6 +42,31 @@ function downvote_question(question_id){
       dataType: "text"
 });
 }
+
+function search_question(){
+  var search_text = $("#search_question").val();
+  render_search_result(search_text);
+  
+}
+
+function render_search_result(search_text){
+  var path = "/scratchQs/search/keyword=" + search_text;
+    window.location.pathname=path;
+}
+
+
+function nav_to_answer(question_id) {
+    //set url to answer_page/question_id
+    var path = "/scratchQs/" + question_id;
+    window.location.pathname=path;
+}
+
+function filter_questions(community_id) {
+    //set url to answer_page/question_id
+    var path = "/scratchQs/community/" + community_id;
+    window.location.pathname=path;
+}
+
 
     </script>
   </body>
