@@ -52,7 +52,7 @@ def community_questions(request, community_id):
     #print(parent_community.name)
     #print(Question.objects.filter(community=parent_community.name))
 	
-	filtered_questions = Question.objects.filter(community=parent_community.name)
+	filtered_questions = Question.objects.filter(community=parent_community.name).order_by("-votes")
  	context = {"questions": filtered_questions, 'communities': Community.objects.all()}
 
  	return render(request,"scratchQs/index.html",context)
