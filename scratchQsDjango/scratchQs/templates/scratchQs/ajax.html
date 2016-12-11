@@ -1,0 +1,73 @@
+<html>
+  <body>
+    <script>
+    
+function submitQuestion(){
+  var title = $("#questionTitle").val()
+  var content = $("#questionDescription").val()
+  var category = "CATEGORYSELECTNOTWORKING" //$("#questionCategory").val()
+  $.ajax({
+    type: "POST",
+    url: "../add_question/",
+    data: { "title": title,
+        "content": content,
+        "category": category,
+      },
+    datatype: "json",
+    error: function(){alert('Error!');},
+    success: function(response) {
+      location.reload()
+    }
+  });
+}
+
+function upvote_question(question_id){
+  console.log(question_id);
+  $.ajax({
+    type: "POST",
+      url: "/upvote_question",
+      data: {"question_id":question_id},
+      success: function() {location.reload();},
+      dataType: "text"
+});
+}
+
+function downvote_question(question_id){
+  console.log(question_id);
+  $.ajax({
+    type: "POST",
+      url: "/downvote_question",
+      data: {"question_id":question_id},
+      success: function() {location.reload();},
+      dataType: "text"
+});
+}
+
+function search_question(){
+  var search_text = $("#search_question").val();
+  render_search_result(search_text);
+  
+}
+
+function render_search_result(search_text){
+  var path = "/scratchQs/search/keyword=" + search_text;
+    window.location.pathname=path;
+}
+
+
+function nav_to_answer(question_id) {
+    //set url to answer_page/question_id
+    var path = "/scratchQs/" + question_id;
+    window.location.pathname=path;
+}
+
+function filter_questions(community_id) {
+    //set url to answer_page/question_id
+    var path = "/scratchQs/community/" + community_id;
+    window.location.pathname=path;
+}
+
+
+    </script>
+  </body>
+</html>

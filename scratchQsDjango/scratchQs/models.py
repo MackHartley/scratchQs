@@ -16,7 +16,7 @@ class Category(models.Model):
 		return 'Category: %s' % (self.name)
 
 class Question(models.Model):
-	community = models.ForeignKey(Community, on_delete=models.CASCADE, default="None")
+	community = models.ForeignKey(Community, on_delete=models.CASCADE, default=None)
 	category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
 	title = models.CharField(max_length=200, unique=True)
 	content = models.TextField()
