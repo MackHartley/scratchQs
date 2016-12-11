@@ -145,8 +145,9 @@
 							<p class="questionContent">{{question.content}}</p>
 					</div>
 					<div class="options">
-						<button class="btn btn-primary upvote">^</button>
-						<button class="btn btn-primary downvote">V</button>
+
+						<button id = {{question.id}} class="btn btn-primary upvote" onClick="upvote_question(this.id)">upvote</button>
+						<button id = {{question.id}} class="btn btn-primary downvote" onClick="downvote_question(this.id)">downvote</button>
 						<button class = "questionVote"># Votes: {{question.votes}}</button>
 					</div>
 					{% endfor %}
@@ -167,6 +168,55 @@
 
 
 <script>
+$.ajaxSetup({ 
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     } 
+});
+
+function upvote_question(question_id){
+	console.log(question_id);
+	$.ajax({
+		type: "POST",
+  		url: "/upvote_question",
+  		data: {"question_id":question_id},
+  		success: function() {location.reload();},
+  		dataType: "text"
+});
+}
+
+function downvote_question(question_id){
+	console.log(question_id);
+	$.ajax({
+		type: "POST",
+  		url: "/downvote_question",
+  		data: {"question_id":question_id},
+  		success: function() {location.reload();},
+  		dataType: "text"
+});
+}
+
+
+
+
 function nav_to_answer(question_id) {
     //set url to answer_page/question_id
     var path = "/scratchQs/" + question_id;

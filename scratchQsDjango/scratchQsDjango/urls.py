@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^scratchQs/(?P<question_id>[0-9]+)/$', scratchq_views.answers, name="answers"),
     url(r'^scratchQs/community/(?P<community_id>[0-9]+)/$', scratchq_views.community_questions, name="community_questions"),
     url(r'^scratchQs/signup', scratchq_views.signup, name="signup"),
+    url(r'^upvote_question', scratchq_views.upvote_question, name="upvote_question"),
     # url(r'^scratchQs/loginn/$', auth_views.login, name='login'), #still working
 ]

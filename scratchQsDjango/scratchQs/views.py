@@ -73,6 +73,16 @@ def community_questions(request, community_id):
 
 
 # The next functions all expect POST requests
+def upvote_question(request):
+	parent_question_id = request.POST.get("question_id")
+	print(parent_question_id)
+	parent_question = Question.objects.get(pk=parent_question_id)
+	parent_question.votes = parent_question.votes+1
+	parent_question.save()
+	response = {"status" : 200, "question_id" : parent_question.pk, "title":parent_question.title, "content": parent_question.content, "votes": parent_question.votes}
+	return HttpResponse(json.dumps(response), content_type="application/json")
+
+
 def add_question(request):
 	questionTitle = request.POST.get("title")
 	questionContent = request.Post.get("content")
