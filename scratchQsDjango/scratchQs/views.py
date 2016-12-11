@@ -3,12 +3,13 @@ from django.shortcuts import HttpResponse
 from .models import Answer, Question, Community
 import json
 from django.template import loader
-
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 # Create your views here.
@@ -70,6 +71,7 @@ def order_by_answers(request, community_id):
 
 
 # The next functions all expect POST requests
+@csrf_exempt
 def upvote_question(request):
 	parent_question_id = request.POST.get("question_id")
 	print(parent_question_id)
@@ -79,7 +81,7 @@ def upvote_question(request):
 	response = {"status" : 200, "question_id" : parent_question.pk, "title":parent_question.title, "content": parent_question.content, "votes": parent_question.votes}
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
-
+@csrf_exempt
 def downvote_question(request):
 	parent_question_id = request.POST.get("question_id")
 	print(parent_question_id)
@@ -89,7 +91,7 @@ def downvote_question(request):
 	response = {"status" : 200, "question_id" : parent_question.pk, "title":parent_question.title, "content": parent_question.content, "votes": parent_question.votes}
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
-
+@csrf_exempt
 def upvote_answer(request):
 	parent_answer_id = request.POST.get("answer_id")
 	print(parent_answer_id)
@@ -99,7 +101,7 @@ def upvote_answer(request):
 	response = {"status" : 200, "answer_id" : parent_answer.pk, "content": parent_answer.content, "votes": parent_answer.votes}
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
-
+@csrf_exempt
 def downvote_answer(request):
 	parent_answer_id = request.POST.get("answer_id")
 	print(parent_answer_id)
@@ -109,23 +111,27 @@ def downvote_answer(request):
 	response = {"status" : 200, "answer_id" : parent_answer.pk, "content": parent_answer.content, "votes": parent_answer.votes}
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
-
+@csrf_exempt
 def add_question(request):
-	questionTitle = request.POST.get("title")
-	questionContent = request.Post.get("content")
-	newQuestion = Question(questionTitle,questionContent)
-	newQuestion.save()
-	response = {"status" : 200, "question_id" : newQuestion.pk, "title":question.title, "content": question.content}
-	return HttpResponse(json.dumps(response), content_type="application/json")
+	if request.method == "POST":
+ 		questionTitle = request.POST.get("title")
+ 		questionContent = request.POST.get("content")
+ 		questionCategory = request.POST.get("category")
+ 		newQuestion = Question(title=questionTitle,content=questionContent,category=questionCategory)
+ 		newQuestion.save()
+ 		response = {"status" : 200, "title":newQuestion.title, "content": newQuestion.content, "category": newQuestion.category}
+ 		return HttpResponse(json.dumps(response), content_type="application/json")
+ 	else:
+ 		return HttpResponse("failure")
 
-
+# @csrf_exempt
 # def add_answer(request):
-# 	questionId = request.POST.get("question_id")
+# 	# questionId = request.POST.get("question_id")
 # 	answerText = request.POST.get("answer_text")
 # 	question = Question.objects.get(pk=questionId)
 # 	newAnswer = Answer(question, answerText) #Should we assume someone adding an answer is a vote
 # 	newAnswer.save()
-# 	response = {"status" : 200, "answer_id" : newAnswer.pk, "answer_text" : answerText}
+# 	response = {"status" : 200, "answer_text" : answerText}
 # 	return HttpResponse(json.dumps(response), content_type="application/json")
 
 def signup(request):
