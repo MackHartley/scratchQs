@@ -54,8 +54,9 @@
 		    		<h2 class = "sideBarTitle"> My Groups</h2>
 					<ul class = "groupList">
 					{% for community in communities %}
-						<li>{{community.name}}</li>
+						<a style="cursor: pointer;"><li onClick = "filter_questions(this.id)" id = {{community.id}}>{{community.name}}</li></a>
 					{% endfor %}
+					<a style="cursor: pointer;" href="{% url 'index'%}"><li>All communities</li></a>
 					</ul>
 				</div>
 				<div class = "searchGroups">
@@ -171,6 +172,16 @@ function nav_to_answer(question_id) {
     var path = "/scratchQs/" + question_id;
     window.location.pathname=path;
 }
+
+
+function filter_questions(community_id) {
+    //set url to answer_page/question_id
+    var path = "/scratchQs/community/" + community_id;
+    window.location.pathname=path;
+}
+
+
+
 
 var questionsList = [];
 var questionId = 0;

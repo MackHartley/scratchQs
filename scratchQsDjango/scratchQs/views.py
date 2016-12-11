@@ -15,7 +15,7 @@ from django.views import generic
 class IndexView(generic.ListView):
     template_name = 'scratchQs/index.html'
     context_object_name = 'questions'
-    
+
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context.update({
@@ -58,7 +58,21 @@ def answers(request,question_id):
 	return render(request,"scratchQs/answer_page.html", context)
 
 
-# #The next functions all expect POST requests
+
+def community_questions(request, community_id):
+	parent_community = Community.objects.get(pk=community_id)
+    #print(parent_community.name)
+    #print(Question.objects.filter(community=parent_community.name))
+	
+	filtered_questions = Question.objects.filter(community=parent_community.name)
+ 	context = {"questions": filtered_questions, 'communities': Community.objects.all()}
+
+ 	return render(request,"scratchQs/index.html",context)
+
+
+
+
+# The next functions all expect POST requests
 def add_question(request):
 	questionTitle = request.POST.get("title")
 	questionContent = request.Post.get("content")
