@@ -8,7 +8,6 @@ function nav_to_answer(question_id) {
     window.location.pathname=path;
 }
 
-
 function filter_questions(community_id) {
     //set url to answer_page/question_id
     var path = "/scratchQs/community/" + community_id;
@@ -38,7 +37,7 @@ function displayQ(){
       .append($('<p class="questionContent">')
         .append($("<p>")
           .append(newQuestionDescription.value))))
-    .append($('<div class="options"><button class="btn btn-primary upvote">^</button><button class="btn btn-primary downvote">V</button><button class="btn btn-primary comment">Comment</button>')
+    .append($('<div class="options"><button class="btn btn-primary upvote">upvote</button><button class="btn btn-primary downvote">downvote</button>')
       ));
     console.log(questionsList)
 }

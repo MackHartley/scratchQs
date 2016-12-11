@@ -56,7 +56,7 @@ def answers(request,question_id):
 	parent_question = Question.objects.get(pk=question_id)
 	answers = Answer.objects.filter(question_id=question_id)
 	answers = answers.order_by("-votes")
-	context = {"title" : parent_question.title, "content":parent_question.content,"answers" : answers}
+	context = {"title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
 	return render(request,"scratchQs/answer_page.html", context)
 
 
