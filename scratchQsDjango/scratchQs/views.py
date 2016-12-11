@@ -5,6 +5,7 @@ import json
 from django.template import loader
 
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
@@ -56,6 +57,17 @@ def answers(request,question_id):
 	answers = answers.order_by("-votes")
 	context = {"title" : parent_question.title, "content":parent_question.content,"answers" : answers}
 	return render(request,"scratchQs/answer_page.html", context)
+
+
+def search_question(request,search_text):
+	question_text = search_text
+	print(question_text.lower())
+	print(question_text.upper())
+	if question_text is not None:            
+		#results = Question.objects.filter(title=question_text)
+		results = Question.objects.filter(title__contains=question_text)
+		context = {"questions": results, 'communities': Community.objects.all()}
+		return render(request,"scratchQs/index.html",context)
 
 
 
@@ -114,6 +126,7 @@ def downvote_answer(request):
 
 
 
+            
 
 
 def add_question(request):

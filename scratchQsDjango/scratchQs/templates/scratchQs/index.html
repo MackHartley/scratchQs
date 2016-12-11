@@ -87,9 +87,9 @@
 		<div class="content col-sm-offset-3">
 			<div class="searchDiv"> <!-- This will be nice: http://www.w3schools.com/howto/howto_css_animated_search.asp -->
 		    	<div class="input-group">
-			      	<input type="text" class="form-control" placeholder="Search for new topics...">
+			      	<input id = "search_question" type="text" class="form-control" placeholder="Search for new topics...">
 			      	<span class="input-group-btn">
-		        		<button class="btn btn-default" type="button">Search</button>
+		        		<button class="btn btn-default" type="button" onClick = "search_question()">Search</button>
 		      		</span>
 		    	</div><!-- /input-group -->
 				<div class="btn-group" role="group">
@@ -215,7 +215,16 @@ function downvote_question(question_id){
 });
 }
 
+function search_question(){
+	var search_text = $("#search_question").val();
+	render_search_result(search_text);
+	
+}
 
+function render_search_result(search_text){
+	var path = "/scratchQs/search/keyword=" + search_text;
+    window.location.pathname=path;
+}
 
 
 function nav_to_answer(question_id) {
@@ -230,6 +239,8 @@ function filter_questions(community_id) {
     var path = "/scratchQs/community/" + community_id;
     window.location.pathname=path;
 }
+
+
 
 
 
