@@ -93,6 +93,29 @@ def downvote_question(request):
 	return HttpResponse(json.dumps(response), content_type="application/json")
 
 
+def upvote_answer(request):
+	parent_answer_id = request.POST.get("answer_id")
+	print(parent_answer_id)
+	parent_answer = Answer.objects.get(pk=parent_answer_id)
+	parent_answer.votes = parent_answer.votes+1
+	parent_answer.save()
+	response = {"status" : 200, "answer_id" : parent_answer.pk, "content": parent_answer.content, "votes": parent_answer.votes}
+	return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+def downvote_answer(request):
+	parent_answer_id = request.POST.get("answer_id")
+	print(parent_answer_id)
+	parent_answer = Answer.objects.get(pk=parent_answer_id)
+	parent_answer.votes = parent_answer.votes-1
+	parent_answer.save()
+	response = {"status" : 200, "answer_id" : parent_answer.pk, "content": parent_answer.content, "votes": parent_answer.votes}
+	return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+
+
+
 def add_question(request):
 	questionTitle = request.POST.get("title")
 	questionContent = request.Post.get("content")
