@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% include 'scratchQs/ajax/AnswerPageajax.html' %}
 <head>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -89,7 +90,7 @@
 
         <div class = "content col-sm-offset-3">
             <div class = "questions">
-                <h3>{{title}}</h3>
+                <h3 id="questionTitle" parent="{{title}}">{{title}}</h3>
                 <div class="question shadowedBox">
                     <div class="questionInfo">
                         <p class="questionContent">{{content}}</p>
@@ -120,13 +121,13 @@
 
         <div class = "content col-sm-offset-3">
             <div class="questionForm question">
-                <h4>Add a new answer here</h4>
+                <h4>Add a new answer here {{ question }}</h4>
                 <div class="col-lg-8">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Description" id = "questionDescription">
                         <span>
                         <p></p>
-                        <button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Add a new answer!</button>
+                        <button class="btn btn-default" question="{{question.id}}" type="button" id = "askButton" onclick="submitAnswer({{question.id}})">Add a new answer!</button>
                         </span>
                     </div>
                 </div>
@@ -137,9 +138,17 @@
 </body>
 <!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js "></script>
+
 </html>
 
 <script>
+// $('html').on('click', '#askButton', function() {
+//     alert($(this).attr('question'));
+// });
+
+
 $.ajaxSetup({ 
      beforeSend: function(xhr, settings) {
          function getCookie(name) {

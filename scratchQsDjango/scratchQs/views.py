@@ -34,7 +34,7 @@ def answers(request,question_id):
 	parent_question = Question.objects.get(pk=question_id)
 	answers = Answer.objects.filter(question_id=question_id)
 	answers = answers.order_by("-votes")
-	context = {"title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
+	context = {"question": parent_question, "title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
 	return render(request,"scratchQs/answer_page.html", context)
 
 
@@ -114,15 +114,18 @@ def add_question(request):
  	else:
  		return HttpResponse("failure")
 
-# @csrf_exempt
-# def add_answer(request):
-# 	# questionId = request.POST.get("question_id")
-# 	answerText = request.POST.get("answer_text")
-# 	question = Question.objects.get(pk=questionId)
-# 	newAnswer = Answer(question, answerText) #Should we assume someone adding an answer is a vote
-# 	newAnswer.save()
-# 	response = {"status" : 200, "answer_text" : answerText}
-# 	return HttpResponse(json.dumps(response), content_type="application/json")
+@csrf_exempt
+def add_answer(request):
+	if (request.POST and request.POST['parentQuestionID'] and request.POST['content']):
+		parentQuestionID = request.POST['parentQuestionID']
+		content = request.POST['content']
+		foreignParentObject = Question.objects.filter(id = parentQuestionID)[0]
+		newAnswer = Answer(question = foreignParentObject, content = content)
+		newAnswer.save()
+		return HttpResponse(json.dumps({'status': 200}), content_type = 'application/json')
+	else:
+		return HttpResponse('failure: add_answer in views.py')
+
 
 def signup(request):
 	return render(request, "scratchQs/signup.html", {})

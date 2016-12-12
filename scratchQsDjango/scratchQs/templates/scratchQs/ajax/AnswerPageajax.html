@@ -2,18 +2,46 @@
 	<body>
 		<script>
 
-function submitAnswer(){
-	var desc = $("#questionDescription")
+function submitAnswer(id){
+	var desc = $("#questionDescription").val();
+	var parentId = id;
 	$.ajax({
 		type: "POST",
-		url: "../add_answer/"
-		data: {"content": desc}
-		error: function(){alert("Error: submitAnswer(), AnswerPageajax.html")}
+		url: "../add_answer/",
+		data: {"parentQuestionID": parentId, 
+			   "content": desc,
+			},
+		datatype: "json",
+		error: function(){alert("Error: submitAnswer(), AnswerPageajax.html");},
 		success: function(response){
 			location.reload();
 		}
-	})
+	});
 }
+
+
+
+
+// function submitQuestion(){
+//   var title = $("#questionTitle").val()
+//   var content = $("#questionDescription").val()
+//   var category = "CATEGORYSELECTNOTWORKING" //$("#questionCategory").val()
+//   $.ajax({
+//     type: "POST",
+//     url: "../add_question/",
+//     data: { "title": title,
+//         "content": content,
+//         "category": category,
+//       },
+//     datatype: "json",
+//     error: function(){alert('Error: submitQuestion(), QuestionPageajax.html');},
+//     success: function(response) {
+//       location.reload();
+//     }
+//   });
+// }
+
+
 
 		</script>
 	</body>

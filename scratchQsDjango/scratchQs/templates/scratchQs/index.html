@@ -143,7 +143,13 @@
 				<div class="question shadowedBox">
 					{% for question in questions %}
 					<div class="questionInfo">
-							<a style="cursor: pointer;"><h3 class="questionTitle" onClick="nav_to_answer(this.id)" id={{question.id}}>{{question.title}}</h3></a>
+							<a style="cursor: pointer;">
+
+
+
+								<h3 class="questionTitle" onClick="nav_to_answer(this.id)" id="{{question.id}}">{{question.title}}</h3>
+
+							</a>
 							<p class="questionContent">{{question.content}}</p>
 					</div>
 					<div class="options">
