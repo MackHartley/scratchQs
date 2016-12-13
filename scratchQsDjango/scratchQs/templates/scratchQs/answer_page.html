@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% include 'scratchQs/ajax/AnswerPageajax.html' %}
+{% include 'scratchQs/js/AnswerPageScript.html' %}
+
 <head>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -89,6 +92,7 @@
 
         <div class = "content col-sm-offset-3">
             <div class = "questions">
+                <h3 id="questionTitle" parent="{{title}}">{{title}}</h3>
                 <div class="question shadowedBox">
                     <div class="questionDisplay">
                         <h3>{{title}}</h3>
@@ -120,16 +124,20 @@
 
         <div class = "content col-sm-offset-3">
             <div class="questionForm question">
-                <h4>Add a new answer here</h4>
+                <h4>Add a new answer here {{ question }}</h4>
                 <div class="col-lg-8">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Description" id = "questionDescription">
                         <span>
                         <p></p>
-                        <button class="btn btn-default" type="button" id = "askButton" onclick="insertQ()">Add a new answer!</button>
+                        <button class="btn btn-default" question="{{question.id}}" type="button" id = "askButton" onclick="submitAnswer({{question.id}})">Add a new answer!</button>
                         </span>
                     </div>
                 </div>
+            </div>
+            <div id="homeButton" class = "col-lg-4">
+                <a href = "{% url 'index'%}" class = "btn btn-default btn-lg" >
+                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>  Go back to Homepage</a>
             </div>
         </div>
     </div>
@@ -137,82 +145,7 @@
 </body>
 <!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js "></script>
+
 </html>
-
-<script>
-$.ajaxSetup({ 
-     beforeSend: function(xhr, settings) {
-         function getCookie(name) {
-             var cookieValue = null;
-             if (document.cookie && document.cookie != '') {
-                 var cookies = document.cookie.split(';');
-                 for (var i = 0; i < cookies.length; i++) {
-                     var cookie = jQuery.trim(cookies[i]);
-                     // Does this cookie string begin with the name we want?
-                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                         break;
-                     }
-                 }
-             }
-             return cookieValue;
-         }
-         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-             // Only send the token to relative URLs i.e. locally.
-             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-         }
-     } 
-});
-
-function upvote_answer(answer_id){
-    console.log(answer_id);
-    $.ajax({
-        type: "POST",
-        url: "/upvote_answer",
-        data: {"answer_id":answer_id},
-        success: function() {location.reload();},
-        dataType: "text"
-});
-}
-
-function downvote_answer(answer_id){
-    console.log(answer_id);
-    $.ajax({
-        type: "POST",
-        url: "/downvote_answer",
-        data: {"answer_id":answer_id},
-        success: function() {location.reload();},
-        dataType: "text"
-});
-}
-
-var questionsList = [];
-var questionId = 0;
-
-var newQuestionDescription = document.getElementById("questionDescription");
-function insertQ () {
-    displayQ();
-    clearQ();
-}
-function displayQ(){
-    questionId += 1;
-    console.log(questionId)
-    questionsList.push({id: questionId, des:newQuestionDescription.value })
-    $(".questions").append($('<div class="question shadowedBox">')
-        .append($('<div class="questionInfo">')
-        .append($('<p class="questionContent">')
-            .append($("<p>").append(newQuestionDescription.value))))
-        .append($('<div class="options"><button class="btn btn-primary upvote">upvote</button><button class="btn btn-primary downvote">downvote</button>')
-        ));
-    console.log(questionsList)
-}
-function clearQ(){
-    newQuestionDescription.value = "";
-}
-
-function filter_questions(community_id) {
-    //set url to answer_page/question_id
-    var path = "/scratchQs/community/" + community_id;
-    window.location.pathname=path;
-}
-</script>

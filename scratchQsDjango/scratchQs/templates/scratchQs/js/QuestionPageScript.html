@@ -42,9 +42,25 @@ function displayQ(){
     console.log(questionsList)
 }
 function clearQ(){
-    newQuestionTitle.value = "";
-    newQuestionDescription.value = "";
+  newQuestionTitle.value = "";
+  newQuestionDescription.value = "";
 }
+
+function categorySelector(community){
+  $('#communityField').text(community);
+}
+// $('#communityChoices li').click(function() { //test code
+//   alert($(this).children().attr('community'));
+// });
+
+
+// $('#communityChoices li').click(function(){
+//   alert($(this).attr('community'));
+// });
+// $('html').on('click', '#askButton', function() {
+//     alert($(this).attr('question'));
+// });
+
 
     </script>
   </body>

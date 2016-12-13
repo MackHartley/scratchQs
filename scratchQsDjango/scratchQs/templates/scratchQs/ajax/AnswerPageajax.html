@@ -2,18 +2,69 @@
 	<body>
 		<script>
 
-function submitAnswer(){
-	var desc = $("#questionDescription")
+function submitAnswer(id){
+	var desc = $("#questionDescription").val();
+	var parentId = id;
 	$.ajax({
 		type: "POST",
-		url: "../add_answer/"
-		data: {"content": desc}
-		error: function(){alert("Error: submitAnswer(), AnswerPageajax.html")}
+		url: "../add_answer/",
+		data: {"parentQuestionID": parentId, 
+			   "content": desc,
+			},
+		datatype: "json",
+		error: function(){alert("Error: submitAnswer(), AnswerPageajax.html");},
 		success: function(response){
 			location.reload();
 		}
-	})
+	});
 }
+
+$.ajaxSetup({ 
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     } 
+});
+
+function upvote_answer(answer_id){
+    console.log(answer_id);
+    $.ajax({
+        type: "POST",
+        url: "/upvote_answer",
+        data: {"answer_id":answer_id},
+        success: function() {location.reload();},
+        dataType: "text"
+});
+}
+
+function downvote_answer(answer_id){
+    console.log(answer_id);
+    $.ajax({
+        type: "POST",
+        url: "/downvote_answer",
+        data: {"answer_id":answer_id},
+        success: function() {location.reload();},
+        dataType: "text"
+});
+}
+
 
 		</script>
 	</body>

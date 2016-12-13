@@ -18,6 +18,7 @@ from django.contrib import admin
 # from scratchQs import views
 from scratchQs import views as scratchq_views
 from django.contrib.auth import views as auth_views
+from scratchQs.views import UserFormView
 
 urlpatterns = [
     url(r'^scratchQs/admin/', admin.site.urls),
@@ -33,7 +34,8 @@ urlpatterns = [
     url(r'^downvote_question', scratchq_views.downvote_question, name="downvote_question"),
     url(r'^upvote_answer', scratchq_views.upvote_answer, name="upvote_answer"),
     url(r'^downvote_answer', scratchq_views.downvote_answer, name="downvote_answer"),
-    # url(r'^add_answer/', scratchq_views.add_answer, name="add_answer")
+    url(r'^scratchQs/add_answer/', scratchq_views.add_answer, name="add_answer"),
     url(r'^scratchQs/search/keyword=(?P<search_text>.*)/', scratchq_views.search_question, name="search_question"),
+    url(r'^scratchQs/register/', UserFormView.as_view(), name='register')
     # url(r'^scratchQs/loginn/$', auth_views.login, name='login'), #still working
 ]

@@ -5,7 +5,7 @@
 function submitQuestion(){
   var title = $("#questionTitle").val()
   var content = $("#questionDescription").val()
-  var category = "CATEGORYSELECTNOTWORKING" //$("#questionCategory").val()
+  var category = $("#communityField").text() //$("#questionCategory").val()
   $.ajax({
     type: "POST",
     url: "../add_question/",
@@ -16,7 +16,7 @@ function submitQuestion(){
     datatype: "json",
     error: function(){alert('Error: submitQuestion(), QuestionPageajax.html');},
     success: function(response) {
-      location.reload()
+      location.reload();
     }
   });
 }
