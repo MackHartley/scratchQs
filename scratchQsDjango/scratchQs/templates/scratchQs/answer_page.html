@@ -21,7 +21,7 @@
 <body>
     <nav class="navbar navbar-default header-nav">
 	    <div class="container">
-	      	<a class="navbar-brand" href="{% url 'index'%}">Scratch Q's</a>
+	      	<a class="navbar-brand" href="{% url 'index'%}">scratchQs</a>
 	      	<div class="collapse navbar-collapse" id="navbar">
 		      	<ul class="nav navbar-nav navbar-right">
 		        	<li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
@@ -59,7 +59,7 @@
 					{% for community in communities %}
 						<a style="cursor: pointer;"><li onClick = "filter_questions(this.id)" id = {{community.id}}>{{community.name}}</li></a>
 					{% endfor %}
-					<a style="cursor: pointer;" href="{% url 'index'%}"><li>All communities</li></a>
+					<a style="cursor: pointer; font-weight: bold" href="{% url 'index'%}"><li>All communities</li></a>
 					</ul>
 				</div>
 				<div class = "searchGroups">
@@ -89,9 +89,9 @@
 
         <div class = "content col-sm-offset-3">
             <div class = "questions">
-                <h3>{{title}}</h3>
                 <div class="question shadowedBox">
-                    <div class="questionInfo">
+                    <div class="questionDisplay">
+                        <h3>{{title}}</h3>
                         <p class="questionContent">{{content}}</p>
                     </div>
                     <div class="options">
@@ -101,18 +101,18 @@
                 </div>
             </div>
 
+                <h3 id = "answerTitle">Answers</h3>
                 {% for answer in answers %}
                     <div class="question shadowedBox">
+                        <div class="questionInfo">
+                            <p class="questionContent">{{answer.content}}</p>
+                        </div>
 
-                            <div class="questionInfo">
-                                    <p class="questionContent">{{answer.content}}</p>
-
-                            </div>
-                            <div class="options">
-                                <button id = {{answer.id}} class="btn btn-primary upvote" onClick="upvote_answer(this.id)">upvote</button>
-                                <button id = {{answer.id}} class="btn btn-primary downvote" onClick="downvote_answer(this.id)">downvote</button>
+                        <div class="options">
+                            <button id = {{answer.id}} class="btn btn-primary upvote" onClick="upvote_answer(this.id)">upvote</button>
+                            <button id = {{answer.id}} class="btn btn-primary downvote" onClick="downvote_answer(this.id)">downvote</button>
                                 <button class = "answerVote"># Votes: {{answer.votes}}
-                            </div>
+                        </div>
 
                     </div>
                      {% endfor %}
