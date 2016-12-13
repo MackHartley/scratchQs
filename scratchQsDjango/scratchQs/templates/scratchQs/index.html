@@ -55,7 +55,7 @@
 		    		<h2 class = "sideBarTitle"> My Groups</h2>
 					<ul class = "groupList">
 					{% for community in communities %}
-						<a style="cursor: pointer;"><li onClick = "filter_questions(this.id)" id = {{community.id}}>{{community.name}}</li></a>
+						<a style="cursor: pointer;"><li onClick = "filter_questions(this.id)" id = "{{community.id}}">{{community.name}}</li></a>
 					{% endfor %}
 					<a style="cursor: pointer; font-weight: bold" href="{% url 'index'%}"><li>All communities</li></a>
 					</ul>
@@ -112,13 +112,19 @@
 					      	<input type="text" class="form-control" placeholder="Description" id = "questionDescription">
 					      	<span>
 								<div class="btn-group" role="group">
-						    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    			Choose Category
+						    		<button type="button" class="btn btn-default dropdown-toggle categoryButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    			<span id="communityField">
+						    				Choose Community
+						    			</span>
 						    		<span class="caret"></span>
 						  			</button>
-								  	<ul class="dropdown-menu">
+								  	<ul id="communityChoices" class="dropdown-menu">
 								  		{% for community in communities %}
-								    	<li><a href="#">{{community.name}}</a></li>
+								    	<li onclick="categorySelector('{{community}}')">
+								    		<a href="#" community="{{community.name}}">
+								    			{{community.name}}
+								    		</a>
+								    	</li>
 								    	{% endfor %}
 								  	</ul>
 								</div>
@@ -164,9 +170,3 @@
 	  crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js "></script>
 </html>
-
-
-<script>
-
-</script>
-

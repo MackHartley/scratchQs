@@ -236,3 +236,8 @@ ul {
   opacity: 0.6;
   transition: opacity ease 0.5s;
 }
+
+.categoryButton{
+	width: 161px;
+	text-align: left;
+}
