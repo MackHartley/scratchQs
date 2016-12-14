@@ -25,7 +25,8 @@ urlpatterns = [
     #url(r'^scratchQs/$', scratchq_views.index, name="index"),
     url(r'^scratchQs/questions/', scratchq_views.IndexView.as_view(), name="index"),
     url(r'^scratchQs/filter/(?P<filter_by>.*)/$', scratchq_views.filter_results, name="filter_results"),
-    #url(r'^scratchQs/questions/', scratchq_views.index, name="index"),
+    url(r'^scratchQs/(?P<question_id>[0-9])/filter/(?P<filter_answer_by>.*)/$', scratchq_views.filter_answers, name="filter_answers"),
+
     url(r'^scratchQs/(?P<question_id>[0-9])/$', scratchq_views.answers, name="answers"),
     url(r'^scratchQs/community/(?P<community_id>[0-9]+)/$', scratchq_views.community_questions, name="community_questions"),
     url(r'^scratchQs/signup', scratchq_views.signup, name="signup"),

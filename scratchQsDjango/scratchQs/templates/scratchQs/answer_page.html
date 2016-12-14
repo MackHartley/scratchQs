@@ -106,6 +106,9 @@
             </div>
 
                 <h3 id = "answerTitle">Answers:</h3>
+                <button id = {{question.id}} onClick ="filter_by_most_votes(this.id)">Most Votes</button>
+                <button id = {{question.id}} onClick ="filter_by_most_recent(this.id)">Most Recent</button>
+
                 {% for answer in answers %}
                     <div class="question shadowedBox">
                         <div class="questionInfo">
@@ -149,3 +152,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js "></script>
 
 </html>
+
+<script>
+function filter_by_most_votes(question_id){
+    console.log("test")
+    render_filter_result(question_id, "most_votes");
+}
+
+function filter_by_most_recent(question_id){
+    render_filter_result(question_id, "most_recent");
+}
+
+function render_filter_result(question_id, filter_answer_by){
+  var path2 = "/scratchQs/"+ question_id +"/filter/" + filter_answer_by;
+  window.location.pathname=path2;
+}
+
+</script>

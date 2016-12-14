@@ -42,7 +42,7 @@ def answers(request,question_id):
 	parent_question = Question.objects.get(pk=question_id)
 	answers = Answer.objects.filter(question_id=question_id)
 	answers = answers.order_by("-votes")
-	context = {"question": parent_question, "title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
+	context = {"question_id": question_id, "question": parent_question, "title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
 	return render(request,"scratchQs/answer_page.html", context)
 
 
@@ -83,7 +83,17 @@ def filter_results(request, filter_by):
 		context = {"questions": questions, 'communities': Community.objects.all()}
 		return render(request,"scratchQs/index.html",context)
 
-
+def filter_answers(request, filter_answer_by, question_id):
+	parent_question = Question.objects.get(pk=question_id)
+	answers = Answer.objects.filter(question_id=question_id)
+	if filter_answer_by == "most_votes":
+		answers = answers.order_by("-votes")
+		context = {"question_id": question_id, "question": parent_question, "title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
+		return render(request,"scratchQs/answer_page.html", context)
+	if filter_answer_by == "most_recent":
+		answers = answers.order_by("-pub_date")
+		context = {"question_id": question_id, "question": parent_question, "title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
+		return render(request,"scratchQs/answer_page.html", context)
 
 
 # The next functions all expect POST requests
