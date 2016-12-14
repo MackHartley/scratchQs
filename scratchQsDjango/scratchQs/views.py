@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Count
 
 
 
@@ -40,8 +41,8 @@ def answers(request,question_id):
 
 def search_question(request,search_text):
 	question_text = search_text
+	print(question_text)
 	if question_text is not None:            
-		#results = Question.objects.filter(title=question_text)
 		results = Question.objects.filter(title__contains=question_text)
 		context = {"questions": results, 'communities': Community.objects.all()}
 		return render(request,"scratchQs/index.html",context)
@@ -49,9 +50,6 @@ def search_question(request,search_text):
 
 def community_questions(request, community_id):
 	parent_community = Community.objects.get(pk=community_id)
-    #print(parent_community.name)
-    #print(Question.objects.filter(community=parent_community.name))
-	
 	filtered_questions = Question.objects.filter(community=parent_community.name).order_by("-votes")
  	context = {"questions": filtered_questions, 'communities': Community.objects.all()}
 
@@ -59,15 +57,26 @@ def community_questions(request, community_id):
 
 
 
-def order_by_answers(request, community_id):
-	parent_community = Community.objects.get(pk=community_id)
-    #print(parent_community.name)
-    #print(Question.objects.filter(community=parent_community.name))
-	
-	filtered_questions = Question.objects.filter(community=parent_community.name).order_by("votes")
- 	context = {"questions": filtered_questions, 'communities': Community.objects.all()}
+def filter_results(request, filter_by):
+	if filter_by == "most_votes":
+		questions = Question.objects.order_by("-votes")
+		context = {"questions": questions, 'communities': Community.objects.all()}
+		return render(request,"scratchQs/index.html",context)
+	if filter_by=="question_title":
+		questions = Question.objects.order_by('-title')
+		context = {"questions": questions, 'communities': Community.objects.all()}
+		return render(request,"scratchQs/index.html",context)
+	print(filter_by)
+	if filter_by=="most_answers":
+		questions = Question.objects.annotate(num_ans=Count('answer')).order_by('-num_ans')
+		context = {"questions": questions, 'communities': Community.objects.all()}
+		return render(request,"scratchQs/index.html",context)
+	if filter_by=="least_answers":
+		questions = Question.objects.annotate(num_ans=Count('answer')).order_by('num_ans')
+		context = {"questions": questions, 'communities': Community.objects.all()}
+		return render(request,"scratchQs/index.html",context)
 
- 	return render(request,"scratchQs/index.html",context)
+
 
 
 # The next functions all expect POST requests

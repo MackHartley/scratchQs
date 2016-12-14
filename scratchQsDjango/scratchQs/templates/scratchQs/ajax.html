@@ -43,15 +43,17 @@ function downvote_question(question_id){
 });
 }
 
+
+
 function search_question(){
   var search_text = $("#search_question").val();
   render_search_result(search_text);
-  
 }
+
 
 function render_search_result(search_text){
   var path = "/scratchQs/search/keyword=" + search_text;
-    window.location.pathname=path;
+  window.location.pathname=path;
 }
 
 
@@ -66,6 +68,8 @@ function filter_questions(community_id) {
     var path = "/scratchQs/community/" + community_id;
     window.location.pathname=path;
 }
+
+
 
 
     </script>

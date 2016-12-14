@@ -94,9 +94,11 @@
 		      		</span>
 		    	</div><!-- /input-group -->
 		    	<label>Filter the page by:</label>
-				<a href="{% url 'index'%}">Most votes first</a>,
-				<a href="#">Most answers first</a>,
-				<a href="#">Unanswered questions first</a>
+				<button onClick ="filter_by_most_votes()">Most Votes</button>
+				<button onClick ="filter_by_title()">Question Title</button>
+				<button onClick ="filter_by_ans_num()">Most Answers</button>
+				<button onClick ="filter_by_ans_num_asc()">Least Answers</button>
+				<!--<a href="#">Unanswered questions first</a>-->
 			</div>
 
 
@@ -161,6 +163,41 @@
 
 
 <script>
+// 0-> default by votes; 1-> number of answers
+
+function filter_by_most_votes(){
+	render_filter_result("most_votes");
+}
+
+function filter_by_title(){
+  console.log("test filter by answer");
+  render_filter_result("question_title");
+}
+
+function filter_by_ans_num(){
+  console.log("test filter by answer");
+  render_filter_result("most_answers");
+}
+
+function filter_by_ans_num_asc(){
+  console.log("test filter by answer");
+  render_filter_result("least_answers");
+}
+
+
+
+function render_filter_result(filter_by){
+  var path2 = "/scratchQs/filter/" + filter_by;
+  window.location.pathname=path2;
+  console.log(filter_by)
+}
+
+
+
+
+
+
+
 
 </script>
 
