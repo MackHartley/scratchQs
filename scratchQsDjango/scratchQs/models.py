@@ -32,7 +32,7 @@ class Answer(models.Model):
 	question = models.ForeignKey(Question, on_delete=models.CASCADE, default=None)
 	content = models.TextField()
 	votes = models.IntegerField(default=0)
-	pub_date = models.DateTimeField(auto_now_add=True, blank=True)
+	# pub_date = models.DateTimeField(auto_now_add=True, blank=True)
 	def __str__(self):
 		return 'Question: %s (Content: %s)' % (self.question, self.content)
 

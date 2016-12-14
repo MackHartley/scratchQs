@@ -1,0 +1,60 @@
+<html>
+{% load static %}
+
+{{ form.media }}
+<head>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'scratchQs/main.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'scratchQs/signup.css' %}">
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+	<meta charset="UTF-8">
+	<title>ScratchQs - sign up</title>
+
+</head>
+<body>
+	<nav class="navbar navbar-default header-nav">
+	    <div class="container">
+	      	<a class="navbar-brand" href="{% url 'index'%}">Scratch Q's</a>
+	      	<div class="collapse navbar-collapse" id="navbar">
+		      	<ul class="nav navbar-nav navbar-right">
+		        	<li><a href="{% url 'login' %}">Log In</a></li>
+		        	<li><a href="{% url 'register'%}">Sign Up</a></li>
+		      	</ul>
+	      	</div>
+	    </div>
+  	</nav>
+
+	<div class="container" id="wrap">
+	  <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="post" accept-charset="utf-8" class="form" role="form"> 
+            	{% csrf_token %}
+            	<h2 id = "c-title">Log In</h2>
+				
+				{{form}}
+
+            	<!-- <label>Username</label>
+            	{{ form.errors.username }}
+ 				<input type="text" name="username" value="" class="form-control input-lg" placeholder="Username" />
+                <label>Password</label>
+            	{{ form.errors.password }}                
+                <input type="password" name="password" value="" class="form-control input-lg" placeholder="Password"  />               
+                </div>  -->
+                <button class="btn btn-lg btn-primary btn-block signup-btn" type="submit">Log In</button>
+            </form>          
+          </div>
+</div>            
+</div>
+</div>
+</body>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>

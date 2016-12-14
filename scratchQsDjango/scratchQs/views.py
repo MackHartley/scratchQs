@@ -16,6 +16,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from .forms import UserForm
+from .forms import UserLoginForm
 from django.utils.decorators import method_decorator
 
 
@@ -201,12 +202,42 @@ class UserFormView(View):
 
 				if user.is_active:
 					login(request, user)
-					return redirect('scratchQs/index')
+					return redirect('/scratchQs/questions')
 
 		return render(request, self.template_name, {'form': form})
 
 
+# Used for login
+@csrf_exempt
+def login_view(request):
+	print(request.user.is_authenticated())
+	title = "Login" # might want this
+	form = UserLoginForm(request.POST or None)
+	if request.method == "POST":
+		if form.is_valid():
+			username = form.cleaned_data.get("username")
+			password = form.cleaned_data.get("password")
+			user = authenticate(username=username, password=password)
+			login(request, user)
+			print(request.user.is_authenticated())
+			return redirect('/scratchQs/questions')
+		else:
+			pass
+			# redirect to failed
 
+	return render(request, "scratchQs/loginpage.html", {'form':form, 'title':title})
+
+def logout_view(request):
+	logout(request)
+	return render(request, "form.html", {})
+
+
+	# def get(self, request):
+	# 	form = self.form_class(None)
+	# 	return render(request, self.template_name, {'form': form})
+
+	# def post(self, request):
+	# 	form = slef.form_class(request.POST)
 
 
 
