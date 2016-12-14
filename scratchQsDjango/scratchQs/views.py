@@ -9,7 +9,15 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
+<<<<<<< HEAD
 from django.db.models import Count
+=======
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.views.generic import View
+from .forms import UserForm
+from django.utils.decorators import method_decorator
+>>>>>>> 63d44a33f88e82622cb0170b0911ad750e820e61
 
 
 
@@ -35,7 +43,7 @@ def answers(request,question_id):
 	parent_question = Question.objects.get(pk=question_id)
 	answers = Answer.objects.filter(question_id=question_id)
 	answers = answers.order_by("-votes")
-	context = {"title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
+	context = {"question": parent_question, "title" : parent_question.title, "content":parent_question.content,"answers" : answers, 'communities': Community.objects.all()}
 	return render(request,"scratchQs/answer_page.html", context)
 
 
@@ -133,17 +141,63 @@ def add_question(request):
  	else:
  		return HttpResponse("failure")
 
-# @csrf_exempt
-# def add_answer(request):
-# 	# questionId = request.POST.get("question_id")
-# 	answerText = request.POST.get("answer_text")
-# 	question = Question.objects.get(pk=questionId)
-# 	newAnswer = Answer(question, answerText) #Should we assume someone adding an answer is a vote
-# 	newAnswer.save()
-# 	response = {"status" : 200, "answer_text" : answerText}
-# 	return HttpResponse(json.dumps(response), content_type="application/json")
+@csrf_exempt
+def add_answer(request):
+	if (request.POST and request.POST['parentQuestionID'] and request.POST['content']):
+		parentQuestionID = request.POST['parentQuestionID']
+		content = request.POST['content']
+		foreignParentObject = Question.objects.filter(id = parentQuestionID)[0]
+		newAnswer = Answer(question = foreignParentObject, content = content)
+		newAnswer.save()
+		return HttpResponse(json.dumps({'status': 200}), content_type = 'application/json')
+	else:
+		return HttpResponse('failure: add_answer in views.py')
 
+# Followed tutorial from https://www.youtube.com/watch?v=aCotgGyS2gc
+@csrf_exempt
 def signup(request):
 	return render(request, "scratchQs/signup.html", {})
+
+
+
+# might need csrf_exept
+@method_decorator(csrf_exempt, name='dispatch')
+class UserFormView(View):
+	form_class = UserForm
+	template_name = 'scratchQs/signup.html'
+
+	# display blank form
+	def get(self, request):
+		form = self.form_class(None)
+		return render(request, self.template_name, {'form': form})
+
+	# process form data
+	def post(self, request):
+		form = self.form_class(request.POST)
+
+		if form.is_valid():
+
+			user = form.save(commit=False)
+
+			# cleaned (normalized) data
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password']
+			user.set_password(password)
+			user.save()
+
+			# returns User objects if credentials are correct
+			user = authenticate(username=username, password=password)
+
+			if user is not None:
+
+				if user.is_active:
+					login(request, user)
+					return redirect('scratchQs/index')
+
+		return render(request, self.template_name, {'form': form})
+
+
+
+
 
 

@@ -18,11 +18,11 @@
 <body>
 	<nav class="navbar navbar-default header-nav">
 	    <div class="container">
-	      	<a class="navbar-brand" href="{% url 'index'%}">Scratch Q's</a>
+	      	<a class="navbar-brand" href="{% url 'index'%}">scratchQs</a>
 	      	<div class="collapse navbar-collapse" id="navbar">
 		      	<ul class="nav navbar-nav navbar-right">
 		        	<li><a href="#" data-toggle="modal" data-target="#login-modal">Log In</a></li>
-		        	<li><a href="{% url 'signup'%}">Sign Up</a></li>
+		        	<li><a href="{% url 'register'%}">Sign Up</a></li>
 		      	</ul>
 	      	</div>
 	    </div>
@@ -55,7 +55,7 @@
 		    		<h2 class = "sideBarTitle"> My Groups</h2>
 					<ul class = "groupList">
 					{% for community in communities %}
-						<a style="cursor: pointer;"><li onClick = "filter_questions(this.id)" id = {{community.id}}>{{community.name}}</li></a>
+						<a style="cursor: pointer;"><li onClick = "filter_questions(this.id)" id = "{{community.id}}">{{community.name}}</li></a>
 					{% endfor %}
 					<a style="cursor: pointer; font-weight: bold" href="{% url 'index'%}"><li>All communities</li></a>
 					</ul>
@@ -114,13 +114,19 @@
 					      	<input type="text" class="form-control" placeholder="Description" id = "questionDescription">
 					      	<span>
 								<div class="btn-group" role="group">
-						    		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    			Choose Category
+						    		<button type="button" class="btn btn-default dropdown-toggle categoryButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    			<span id="communityField">
+						    				Choose Community
+						    			</span>
 						    		<span class="caret"></span>
 						  			</button>
-								  	<ul class="dropdown-menu">
+								  	<ul id="communityChoices" class="dropdown-menu">
 								  		{% for community in communities %}
-								    	<li><a href="#">{{community.name}}</a></li>
+								    	<li onclick="categorySelector('{{community}}')">
+								    		<a href="#" community="{{community.name}}">
+								    			{{community.name}}
+								    		</a>
+								    	</li>
 								    	{% endfor %}
 								  	</ul>
 								</div>
@@ -135,7 +141,10 @@
 				<div class="question shadowedBox">
 					{% for question in questions %}
 					<div class="questionInfo">
-							<a style="cursor: pointer;"><h3 class="questionTitle" onClick="nav_to_answer(this.id)" id={{question.id}}>{{question.title}}</h3></a>
+							<a style="cursor: pointer;">
+								<h3 class="questionTitle" onClick="nav_to_answer(this.id)" id="{{question.id}}">{{question.title}}</h3>
+
+							</a>
 							<p class="questionContent">{{question.content}}</p>
 					</div>
 					<div class="options">
@@ -146,12 +155,11 @@
 					</div>
 					{% endfor %}
 				</div>
-
-
 			</div>
 		</div>
 	</div>
 </body>
+
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -160,6 +168,7 @@
 	  crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js "></script>
 </html>
+
 
 
 <script>
@@ -191,11 +200,6 @@ function render_filter_result(filter_by){
   window.location.pathname=path2;
   console.log(filter_by)
 }
-
-
-
-
-
 
 
 
