@@ -121,6 +121,12 @@ ul {
 	/*float: right;*/
 }
 
+/*TODO: make it align to the right*/
+#topButton{
+	padding-left: 80%;
+	float: right;
+}
+
 .question h3{
 	margin-top: 0px;
 	background-color: #73EEFF;
