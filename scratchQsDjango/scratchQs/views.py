@@ -9,15 +9,14 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
-<<<<<<< HEAD
+
 from django.db.models import Count
-=======
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from .forms import UserForm
 from django.utils.decorators import method_decorator
->>>>>>> 63d44a33f88e82622cb0170b0911ad750e820e61
 
 
 
